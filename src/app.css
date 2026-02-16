@@ -1,18 +1,18 @@
 /* --- 1. THEME VARIABLES --- */
 :root {
-  --bg-dark: #050505;        /* Deep Black background */
-  --bg-shell: #0f0f0f;       /* Main workspace background */
-  --bg-panel: #1a1a1a;       /* Headers and column surfaces */
-  --bg-inset: #080808;       /* Textareas and Zones */
-  --border: #2a2a2a;
-  --accent-blue: #3b82f6;
-  --accent-green: #22c55e;
+  --page-bg: #0A0A0B;        
+  --main-bg: #121214;      
+  --label-bg: #000;       
+  --bg-inset: #080808;       
+  --main-br: #242427;
+  --main-input-bg: #000;
+  --nav-br: #333333;
   --text-main: #ffffff;
-  --text-dim: #666666;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --small-text-bg: #080808;
 }
 
-/* --- 2. RESET & GLOBAL --- */
+/* General Page things */
 * { box-sizing: border-box; }
 
 html, body {
@@ -20,7 +20,7 @@ html, body {
   padding: 0;
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--bg-dark);
+  background-color: var(--page-bg);
   color: var(--text-main);
   font-family: ui-sans-serif, system-ui, sans-serif;
   overflow-x: hidden;
@@ -33,27 +33,19 @@ html, body {
   align-items: center;
 }
 
-/* --- 3. NAVIGATION & ACTION BARS --- */
+/* Nav stuff not sure why it is not in the NavBar Css */
+
 nav {
   width: 100%;
   height: 60px;
-  background: #111;
-  border-bottom: 1px solid var(--border);
+  background: #121214;
+  border-bottom: 1px solid var(--nav-br);
   display: flex;
   justify-content: center;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-.action-bar {
-  width: 100%;
-  background: #161616;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: center;
-  padding: 15px 0;
 }
 
 .nav-inner, .action-bar-inner {
@@ -70,17 +62,18 @@ nav {
   letter-spacing: 2px;
 }
 
-/* --- 4. MAIN WORKSPACE --- */
+/* The bit the defines the main area */
 .main-wrapper {
   width: 90vw;
   margin: 30px 0;
-  border: 1px solid var(--border);
-  background: var(--bg-shell);
+  border: 1px solid var(--main-br);
+  background: var(--main-bg);
   display: flex;
   flex-direction: column;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
+/* The grid the columns sit in */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -88,114 +81,86 @@ nav {
   min-height: 600px;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid var(--border);
-}
-
-.column:last-child { border-right: none; }
-
+/*  Label for boxes i.e. Front/back */
 .label {
   padding: 12px 20px;
-  background: var(--bg-panel);
+  background: var(--label-bg);
   font-size: 0.75rem;
   font-weight: bold;
   font-family: var(--font-mono);
-  color: var(--accent-blue);
-  border-bottom: 1px solid var(--border);
+  color: #3b82f6;
+  border-bottom: 1px solid var(--main-br);
   text-transform: uppercase;
 }
 
-/* --- 5. THE UNIFIED ZONES (Identical Twins) --- */
-.paste-zone, 
-.audioZone {
-  flex: 0 0 350px !important; /* FIXED HEIGHT */
+.column {
   display: flex;
   flex-direction: column;
+  height: 100%; /* Important: Fill the grid cell */
+  border-right: 1px solid #2a2a2a; /* Vertical dividers */
+}
+
+.zone {
+  flex: 0 0 350px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-inset);
   margin: 10px;
   border: 2px dashed #333;
   border-radius: 4px;
-  padding: 20px;
   position: relative;
-  overflow: hidden;
-  transition: all 0.2s ease;
-}
-
-.paste-zone:focus,
-.audioZone:hover {
-  border-color: var(--accent-blue);
-  background: #0c0c0c;
-}
-
-/* Audio Player & Image Scaling */
-audio {
-  width: 100%;
-  max-width: 400px;
-  height: 50px;
-  filter: invert(100%) hue-rotate(180deg) brightness(1.2);
-}
-
-.paste-zone img {
-  max-width: 95%;
-  max-height: 95%;
-  object-fit: contain;
-}
-
-/* --- 6. TEXT AREAS --- */
-textarea {
-  flex: 1;
-  background: transparent;
-  color: #fff;
-  padding: 25px;
-  font-size: 1.8rem;
-  font-family: var(--font-mono);
-  border: none;
   outline: none;
-  resize: none;
 }
 
-.smallTextarea, 
-.small-textarea {
-  flex: 0 0 100px !important; /* FIXED RATIO */
-  font-size: 1.1rem !important;
-  background: var(--bg-inset) !important;
-  border-top: 1px solid var(--border) !important;
-  padding: 15px !important;
+.zone:focus {
+  border-color: #3b82f6;
 }
 
-/* --- 7. BUTTONS & CONTROLS --- */
-.send-button {
-  background: var(--accent-green);
-  color: #000;
-  border: none;
-  padding: 10px 25px;
-  font-weight: 800;
-  font-family: var(--font-mono);
-  border-radius: 4px;
-}
-
-.magicBtn { background: #f1c40f; color: #000; }
-.forvoBtn { background: #4a90e2; }
-.wrBtn { background: #6c5ce7; }
-.sdBtn { background: #ff4b2b; }
-
-.pane-search {
-  display: flex;
-  background: var(--bg-panel);
-  padding: 8px;
-  gap: 8px;
-  border-bottom: 1px solid var(--border);
-}
-
-.pane-search input {
-  flex: 1;
-  background: var(--bg-inset);
-  border: 1px solid #333;
+.smallTextarea {
+  flex: 0.2; /* Matches your WordSection fix */
+  min-height: 100px; /* Ensures it doesn't get too squashed */
+  width: 100%;
   color: #fff;
-  padding: 6px 12px;
+  font-size: 1.5rem;
+  padding: 15px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+  background: var(--small-text-bg);
 }
 
+.paneSearch {
+  height: 45px; /* Fixed height for both sections */
+  display: flex;
+  padding: 5px 10px;
+  gap: 8px;
+  border-bottom: 1px solid #2a2a2a;
+  align-items: center;
+}
+
+.paneSearch input {
+  flex: 1;
+  color: #fff;
+  background: var(--main-input-bg);
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1px;
+}
+
+.paneSearch button {
+  height: 30px;
+  padding: 0 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.searchButton {
+  height: 30px;
+  width: 70px;
+  background: #242427;
+  color: #3b82f6;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}

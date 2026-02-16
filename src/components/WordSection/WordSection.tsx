@@ -57,10 +57,10 @@ const handleMagicFetch = async () => {
   });
 
   return (
-    <div class={s.column}>
+    <div class="column">
       <div class="label">AUDIO SEARCH</div>
       
-      <div class={s.paneSearch}>
+      <div class={s.searchBar + " paneSearch"}>
         <input 
           type="text" 
           placeholder="Type word..." 
@@ -74,7 +74,7 @@ const handleMagicFetch = async () => {
         </div>
       </div>
 
-      <div class={s.audioZone} tabindex="0">
+      <div class="zone" tabindex="0">
         {/* Status Toast Notification */}
         <Show when={status() === "error"}>
           <div class={s.toast}>Not found. Opening WordReference...</div>
@@ -88,7 +88,6 @@ const handleMagicFetch = async () => {
             <>
               <label class={s.audioLabel}>
                 <input type="file" onChange={(e) => setAudioFile(e.target.files?.[0] || null)} class={s.hiddenInput} />
-                <span>Drag MP3 here...</span>
               </label>
               <div class={s.divider}>— OR —</div>
               <input 
@@ -109,7 +108,7 @@ const handleMagicFetch = async () => {
       </div>
 
       <div class="label" style="background: #111; border-top: 1px solid #2a2a2a; font-size: 0.6rem;">TARGET WORD</div>
-      <textarea name="back" class={s.smallTextarea} placeholder="Type word..." required />
+      <textarea name="back" class="smallTextarea" placeholder="Type word..." required />
     </div>
   );
 }

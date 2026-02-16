@@ -28,20 +28,20 @@ export function ImageSection() {
   };
 
   return (
-    <div class={s.column}>
+    <div class="column">
       <div class="label">FRONT (IMAGE + EXTRA)</div>
       
-      <div class={s.paneSearch}>
+      <div class="paneSearch">
         <input 
           id="imgSearch" 
           type="text" 
           placeholder="Search for image..." 
           onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), openSearch())}
         />
-        <button type="button" onClick={openSearch}>FIND</button>
+        <button type="button" class="searchButton" onClick={openSearch}>FIND</button>
       </div>
 
-      <div onPaste={handlePaste} class={s.pasteZone} tabindex="0">
+      <div onPaste={handlePaste} class="zone" tabindex="0">
         <Show 
           when={imgData()} 
           fallback={<span class={s.placeholder}>Ctrl+V to Paste Image</span>}
@@ -65,7 +65,7 @@ export function ImageSection() {
       <textarea 
         name="frontText" 
         placeholder="Add context to image..." 
-        class={s.smallTextarea} 
+        class="smallTextarea"
       />
       
       <input type="hidden" name="frontImage" value={imgData()} />

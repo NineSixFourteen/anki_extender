@@ -4,7 +4,9 @@ const [searchTerm, setSearchTerm] = createSignal("");
 import { addToAnki } from "../lib/api";
 import { ImageSection } from "~/components/ImageSection/ImageSection";
 import { WordSection } from "~/components/WordSection/WordSection";
-
+import { Navbar } from '~/components/Navbar/Navbar';
+import { ActionBar } from '~/components/ActionBar/ActionBar'
+import { OptionSection } from "~/components/OptionSection/OptionSection";
 
 const handleSearch = (e: Event) => {
   e.preventDefault();
@@ -56,54 +58,14 @@ export default function Home() {
 
   return (
     <main>
-      <nav>
-        <div class="nav-inner">
-          <div class="nav-brand">ANKI_SYNC_PRO</div>
-          <div class="nav-status">
-            <Show when={enrolling.pending}>
-              <span class="status-syncing">SYNCING...</span>
-            </Show>
-            <Show when={!enrolling.pending}>
-              <span class="status-online">● API_READY</span>
-            </Show>
-          </div>
-        </div>
-      </nav>
-
-      <div class="action-bar">
-          <div class="action-bar-inner">
-            <div class="control-group">
-              <label>TARGET_DECK</label>
-              <select name="deckName" form="anki-form">
-                <For each={decks() ?? []}>
-                  {(deck) => <option value={deck}>{deck}</option>}
-                </For>
-              </select>
-            </div>
-
-            <button 
-              type="submit" 
-              form="anki-form" 
-              class="send-button"
-              disabled={enrolling.pending}
-            >
-              {enrolling.pending ? "SENDING..." : "SEND TO ANKI"}
-            </button>
-          </div>
-        </div>
-
-
+      <Navbar />
+      <ActionBar/>
       <div class="main-wrapper">
-        <form action={addToAnki} method="post" id="anki-form">
           <div class="grid-container">
             <ImageSection />
             <WordSection/>
-                <div class="column">
-              <div class="label">ENGLISH</div>
-              <textarea name="english" required />
-            </div>
+            <OptionSection />
           </div>
-        </form>
       </div>
     </main>
   );
