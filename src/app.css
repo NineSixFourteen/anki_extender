@@ -1,39 +1,181 @@
-body {
-  font-family: Gordita, Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+/* --- RESET & GLOBAL --- */
+* {
+  box-sizing: border-box;
 }
 
-a {
-  margin-right: 1rem;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #050505; /* Deep Black */
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
 }
 
-main {
-  text-align: center;
-  padding: 1em;
-  margin: 0 auto;
+/* Nuke the default SolidStart wrapper constraints */
+#app, main {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
-  color: #335d92;
+/* --- NAVIGATION BAR --- */
+nav {
+  width: 100%;
+  height: 60px;
+  background: #111111;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-inner {
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: #3b82f6; /* Accent Blue */
+}
+
+.api-status {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #4ade80; /* Success Green */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- MAIN WORKSPACE CONTAINER --- */
+.main-wrapper {
+  width: 90vw; /* THE 90% REQUIREMENT */
+  margin: 30px 0;
+  border: 1px solid #2a2a2a;
+  background: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* --- THE 3-COLUMN GRID --- */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 EQUAL SECTIONS */
+  width: 100%;
+  min-height: 500px; /* Fixed height for consistency */
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2a2a2a;
+}
+
+.column:last-child {
+  border-right: none;
+}
+
+.label {
+  padding: 12px 20px;
+  background: #1a1a1a;
+  font-size: 0.75rem;
+  font-weight: bold;
+  font-family: monospace;
+  color: #3b82f6;
+  border-bottom: 1px solid #2a2a2a;
   text-transform: uppercase;
-  font-size: 4rem;
-  font-weight: 100;
-  line-height: 1.1;
-  margin: 4rem auto;
-  max-width: 14rem;
 }
 
-p {
-  max-width: 14rem;
-  margin: 2rem auto;
-  line-height: 1.35;
+/* --- BIG TEXT AREAS --- */
+textarea {
+  flex: 1;
+  background: transparent;
+  color: #ffffff;
+  padding: 25px;
+  font-size: 1.8rem; /* THE BIG TEXT REQUIREMENT */
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  border: none;
+  outline: none;
+  resize: none;
+  line-height: 1.4;
 }
 
-@media (min-width: 480px) {
-  h1 {
-    max-width: none;
-  }
+textarea::placeholder {
+  color: #333333;
+}
 
-  p {
-    max-width: none;
-  }
+textarea:focus {
+  background: #141414;
+}
+
+/* --- BOTTOM TOOLBAR --- */
+.bottom-bar {
+  padding: 20px 30px;
+  background: #0a0a0a;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+select {
+  padding: 10px 15px;
+  background: #222222;
+  color: #ffffff;
+  border: 1px solid #333333;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+select:focus {
+  border-color: #3b82f6;
+}
+
+button {
+  padding: 12px 40px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+button:disabled {
+  background: #333333;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+.status-msg {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: monospace;
 }
