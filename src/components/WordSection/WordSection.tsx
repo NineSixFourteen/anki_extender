@@ -1,10 +1,11 @@
 import { createSignal, createMemo, Show } from "solid-js";
 import s from "./WordSection.module.css";
+
 export function WordSection() {
   const [audioFile, setAudioFile] = createSignal<File | null>(null);
   const [pastedUrl, setPastedUrl] = createSignal("");
   const [searchTerm, setSearchTerm] = createSignal("");
-  const [status, setStatus] = createSignal(""); // Tracks loading/error for the ✨ button
+  const [status, setStatus] = createSignal(""); 
 
   const handleForvo = () => {
     if (searchTerm()) window.open(`https://forvo.com/word/${encodeURIComponent(searchTerm())}/#es`, '_blank');
@@ -17,6 +18,7 @@ export function WordSection() {
   const handleSpanishDict = () => {
     if (searchTerm()) window.open(`https://www.spanishdict.com/translate/${encodeURIComponent(searchTerm())}`, '_blank');
   };
+  
 const handleMagicFetch = async () => {
   const word = searchTerm().toLowerCase().trim();
   if (!word) return;
@@ -60,7 +62,7 @@ const handleMagicFetch = async () => {
     <div class="column">
       <div class="label">AUDIO SEARCH</div>
       
-      <div class={s.searchBar + " paneSearch"}>
+      <div class={"paneSearch"}>
         <input 
           type="text" 
           placeholder="Type word..." 
