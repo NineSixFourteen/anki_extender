@@ -1,0 +1,164 @@
+:root {
+  /* Surface Colors */
+  --bg-main: #0b0e14;        
+  --bg-panel: #000;       
+  --bg-input: #080808;      
+  --bg-header: #1a1a1a;      
+  
+  /* Borders & Accents */
+  --border-main: #2a2a2a;
+  --border-dim: #222222;
+  --accent-blue: #4a90e2;
+  --error-red: #ff4444;
+  
+  /* Magic Buttons */
+  --color-magic: #f1c40f;
+  --color-forvo: #4a90e2;
+  --color-wr: #6c5ce7;
+  --color-sd: #ff4b2b;
+}
+
+/* --- STRUCTURE --- */
+.column { 
+  display: flex; 
+  flex-direction: column; 
+  height: 100%; 
+  background: var(--bg-panel);
+}
+
+/* --- SEARCH BAR --- */
+.paneSearch {
+  height: 45px;
+  display: flex;
+  background: var(--bg-header);
+  padding: 5px 10px;
+  gap: 5px;
+  border-bottom: 1px solid var(--border-main);
+  align-items: center;
+}
+
+.paneSearch input {
+  flex: 1;
+  height: 30px;
+  background: var(--bg-dark);
+  border: 1px solid #333;
+  color: #fff;
+  padding: 0 10px;
+  font-size: 0.85rem;
+}
+
+/* --- BUTTONS --- */
+.buttonGroup { display: flex; gap: 4px; }
+.buttonGroup button { 
+  width: 32px; 
+  height: 32px; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 0.7rem; 
+  font-weight: bold; 
+  color: white; 
+  border-radius: 4px; 
+}
+
+.magicBtn { background: var(--color-magic); color: #000 !important; }
+.forvoBtn { background: var(--color-forvo); }
+.wrBtn { background: var(--color-wr); }
+.sdBtn { background: var(--color-sd); }
+
+/* --- THE 350px AUDIO ZONE --- */
+.audioZone {
+  flex: 0 0 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080808;
+  margin: 10px;
+  border: 2px dashed #333;
+  border-radius: 4px;
+  position: relative;
+  outline: none;
+}
+
+.audioZone:focus {
+  border-color: #3b82f6;
+}
+
+
+/* --- AUDIO PLAYER & INPUTS --- */
+audio {
+  width: 100%;               /* SET WIDE AS REQUESTED */
+  max-width: 500px;
+  height: 50px;
+  border-radius: 30px;
+  filter: invert(100%) hue-rotate(180deg) brightness(1.2);
+}
+
+.audioContainer { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  width: 90%; 
+  gap: 10px; 
+}
+
+.urlInput { 
+  width: 100%; 
+  background: #111; 
+  border: 1px solid #333; 
+  color: #fff; 
+  padding: 8px; 
+  font-size: 0.7rem; 
+}
+
+.previewWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.clearBtn { 
+  color: var(--error-red); 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 0.7rem; 
+  text-transform: uppercase;
+}
+
+/* --- THE 0.2 TEXTAREA --- */
+.smallTextarea {
+  flex: 0.2;                 /* LOCKED SIZE */
+  min-height: 100px;
+  width: 100%;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 15px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+  background: var(--bg-input);
+  border-top: 1px solid var(--border-main);
+}
+
+/* --- FEEDBACK --- */
+.toast {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--error-red);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  z-index: 10;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

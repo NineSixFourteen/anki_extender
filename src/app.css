@@ -1,43 +1,62 @@
-/* --- RESET & GLOBAL --- */
-* {
-  box-sizing: border-box;
+/* --- 1. THEME VARIABLES --- */
+:root {
+  --bg-dark: #050505;        /* Deep Black background */
+  --bg-shell: #0f0f0f;       /* Main workspace background */
+  --bg-panel: #1a1a1a;       /* Headers and column surfaces */
+  --bg-inset: #080808;       /* Textareas and Zones */
+  --border: #2a2a2a;
+  --accent-blue: #3b82f6;
+  --accent-green: #22c55e;
+  --text-main: #ffffff;
+  --text-dim: #666666;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
+
+/* --- 2. RESET & GLOBAL --- */
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
   min-height: 100vh;
-  background-color: #050505; /* Deep Black */
-  color: #ffffff;
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: ui-sans-serif, system-ui, sans-serif;
   overflow-x: hidden;
 }
 
-/* Nuke the default SolidStart wrapper constraints */
 #app, main {
   width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* --- NAVIGATION BAR --- */
+/* --- 3. NAVIGATION & ACTION BARS --- */
 nav {
   width: 100%;
   height: 60px;
-  background: #111111;
-  border-bottom: 1px solid #2a2a2a;
+  background: #111;
+  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: center;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.nav-inner {
+.action-bar {
+  width: 100%;
+  background: #161616;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.nav-inner, .action-bar-inner {
   width: 90vw;
   display: flex;
   justify-content: space-between;
@@ -45,137 +64,138 @@ nav {
 }
 
 .nav-brand {
+  font-family: var(--font-mono);
   font-weight: 800;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  color: #3b82f6; /* Accent Blue */
+  color: var(--accent-blue);
+  letter-spacing: 2px;
 }
 
-.api-status {
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: #4ade80; /* Success Green */
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* --- MAIN WORKSPACE CONTAINER --- */
+/* --- 4. MAIN WORKSPACE --- */
 .main-wrapper {
-  width: 90vw; /* THE 90% REQUIREMENT */
+  width: 90vw;
   margin: 30px 0;
-  border: 1px solid #2a2a2a;
-  background: #0f0f0f;
+  border: 1px solid var(--border);
+  background: var(--bg-shell);
   display: flex;
   flex-direction: column;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* --- THE 3-COLUMN GRID --- */
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 3 EQUAL SECTIONS */
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  min-height: 500px; /* Fixed height for consistency */
+  min-height: 600px;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #2a2a2a;
+  border-right: 1px solid var(--border);
 }
 
-.column:last-child {
-  border-right: none;
-}
+.column:last-child { border-right: none; }
 
 .label {
   padding: 12px 20px;
-  background: #1a1a1a;
+  background: var(--bg-panel);
   font-size: 0.75rem;
   font-weight: bold;
-  font-family: monospace;
-  color: #3b82f6;
-  border-bottom: 1px solid #2a2a2a;
+  font-family: var(--font-mono);
+  color: var(--accent-blue);
+  border-bottom: 1px solid var(--border);
   text-transform: uppercase;
 }
 
-/* --- BIG TEXT AREAS --- */
+/* --- 5. THE UNIFIED ZONES (Identical Twins) --- */
+.paste-zone, 
+.audioZone {
+  flex: 0 0 350px !important; /* FIXED HEIGHT */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-inset);
+  margin: 10px;
+  border: 2px dashed #333;
+  border-radius: 4px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.paste-zone:focus,
+.audioZone:hover {
+  border-color: var(--accent-blue);
+  background: #0c0c0c;
+}
+
+/* Audio Player & Image Scaling */
+audio {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  filter: invert(100%) hue-rotate(180deg) brightness(1.2);
+}
+
+.paste-zone img {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+}
+
+/* --- 6. TEXT AREAS --- */
 textarea {
   flex: 1;
   background: transparent;
-  color: #ffffff;
+  color: #fff;
   padding: 25px;
-  font-size: 1.8rem; /* THE BIG TEXT REQUIREMENT */
-  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 1.8rem;
+  font-family: var(--font-mono);
   border: none;
   outline: none;
   resize: none;
-  line-height: 1.4;
 }
 
-textarea::placeholder {
-  color: #333333;
+.smallTextarea, 
+.small-textarea {
+  flex: 0 0 100px !important; /* FIXED RATIO */
+  font-size: 1.1rem !important;
+  background: var(--bg-inset) !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 15px !important;
 }
 
-textarea:focus {
-  background: #141414;
-}
-
-/* --- BOTTOM TOOLBAR --- */
-.bottom-bar {
-  padding: 20px 30px;
-  background: #0a0a0a;
-  border-top: 1px solid #2a2a2a;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.controls-left {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-select {
-  padding: 10px 15px;
-  background: #222222;
-  color: #ffffff;
-  border: 1px solid #333333;
-  font-size: 1.1rem;
-  border-radius: 4px;
-  outline: none;
-}
-
-select:focus {
-  border-color: #3b82f6;
-}
-
-button {
-  padding: 12px 40px;
-  background: #3b82f6;
-  color: white;
+/* --- 7. BUTTONS & CONTROLS --- */
+.send-button {
+  background: var(--accent-green);
+  color: #000;
   border: none;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
+  padding: 10px 25px;
+  font-weight: 800;
+  font-family: var(--font-mono);
   border-radius: 4px;
-  transition: background 0.2s;
 }
 
-button:hover {
-  background: #2563eb;
+.magicBtn { background: #f1c40f; color: #000; }
+.forvoBtn { background: #4a90e2; }
+.wrBtn { background: #6c5ce7; }
+.sdBtn { background: #ff4b2b; }
+
+.pane-search {
+  display: flex;
+  background: var(--bg-panel);
+  padding: 8px;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
 }
 
-button:disabled {
-  background: #333333;
-  color: #777777;
-  cursor: not-allowed;
+.pane-search input {
+  flex: 1;
+  background: var(--bg-inset);
+  border: 1px solid #333;
+  color: #fff;
+  padding: 6px 12px;
 }
 
-.status-msg {
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family: monospace;
-}
