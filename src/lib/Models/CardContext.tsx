@@ -1,12 +1,13 @@
-import { createStore, SetStoreFunction } from "solid-js/store";
-import { createContext, JSX, useContext } from "solid-js";
+import { createStore, SetStoreFunction, unwrap } from "solid-js/store";
+import { createContext, createEffect, JSX, useContext } from "solid-js";
 
 export interface CardType {
   Image: String ,  
   FrontText: String, 
   Audio: String, 
   TargetWord: String, 
-  Hints: StupidString[]
+  Hints: StupidString[],
+  English: String
 };
 
 interface CardContextValue {
@@ -24,13 +25,20 @@ export function CardProvider(props: { children: JSX.Element }) {
         FrontText: "", 
         Audio: "", 
         TargetWord: "", 
-        Hints: []
+        Hints: [], 
+        English: ""
     });
 
     const cardContext: CardContextValue = {
       CardStore,
       setCardStore
     }
+
+    createEffect(() => {
+      const currentHints = CardStore.Hints;
+      
+      console.log("Hints changed to:", unwrap(currentHints));
+    })
 
   return (
     <CardContext.Provider value={cardContext}>

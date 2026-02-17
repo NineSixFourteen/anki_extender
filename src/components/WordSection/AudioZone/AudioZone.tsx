@@ -9,7 +9,8 @@ interface AudioZoneImports {
     setPastedUrl: Function,
     pastedUrl: Function,
     setAudioFile: Function,
-    
+    setCardStore: Function,
+
 }
 
 
@@ -37,7 +38,10 @@ export const AudioZone: Component<AudioZoneImports> = (props) => {
                 placeholder="Paste link..." 
                 class={s.urlInput}
                 value={props.pastedUrl()}
-                onInput={(e) => props.setPastedUrl(e.currentTarget.value)} 
+                onInput={(e) => {
+                  props.setPastedUrl(e.currentTarget.value);
+                  props.setCardStore("Audio", e.currentTarget.value);
+                }} 
               />
             </>
           }>

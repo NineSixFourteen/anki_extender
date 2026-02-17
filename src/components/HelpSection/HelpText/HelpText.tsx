@@ -18,6 +18,7 @@ export const HelpText: Component<HelpTextImports> = (props) => {
                 name="frontText" 
                 placeholder="Type english word or sentence idc..." 
                 class="smallTextarea"
+                onChange={(e) => props.setCardStore('English', e.currentTarget.value)} 
             />
         </>
     )

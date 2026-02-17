@@ -1,13 +1,14 @@
 import { action } from "@solidjs/router";
-import { createStore } from "solid-js/store/types/server.js";
+import { CardType, useCards } from "./Models/CardContext";
+import { unwrap } from "solid-js/store";
+import { createEffect } from "solid-js";
+
 
 
 export const addToAnki = action(async (formData: FormData) => {
   "use server";
   
 const backText = formData.get("back")?.toString() || "";
-
-
 
 const audioFile = formData.get("audioFile") as File;
 const audioUrl = formData.get("audioUrl")?.toString();
