@@ -13,7 +13,6 @@ interface AudioZoneImports {
 
 }
 
-
 export const AudioZone: Component<AudioZoneImports> = (props) => {
 
   const activePreviewUrl = createMemo(() => {
@@ -38,9 +37,16 @@ export const AudioZone: Component<AudioZoneImports> = (props) => {
                 placeholder="Paste link..." 
                 class={s.urlInput}
                 value={props.pastedUrl()}
-                onInput={(e) => {
+                onInput={async (e) => {
+                  if (e.currentTarget.value.startsWith("http://")){
+                    const response = fetch(e.currentTarget.value);
+                    const reader = new FileReader();
+                    reader.onload =async () => {
+                      const base64Data = (reader.result as string).split(",")[1];
+                      props.setCardStore(base64Data);
+                    } 
+                  }
                   props.setPastedUrl(e.currentTarget.value);
-                  props.setCardStore("Audio", e.currentTarget.value);
                 }} 
               />
             </>

@@ -5,7 +5,8 @@ interface WordSearchImports {
     setSearchTerm: Function,
     searchTerm: Function,
     setStatus: Function,
-    setPastedUrl: Function
+    setPastedUrl: Function,
+    setCardStore: Function
 }
 
 export const WordSearch: Component<WordSearchImports> = (props) => {
@@ -17,7 +18,7 @@ export const WordSearch: Component<WordSearchImports> = (props) => {
           placeholder="Type word..." 
           onInput={(e) => props.setSearchTerm(e.currentTarget.value)}
         />
-        <WordButtons searchTerm={props.searchTerm}  setStatus={props.setStatus} setPastedUrl={props.setPastedUrl}  />
+        <WordButtons searchTerm={props.searchTerm}  setStatus={props.setStatus} setPastedUrl={props.setPastedUrl} setCardStore={props.setCardStore} />
       </div>
     )
 }

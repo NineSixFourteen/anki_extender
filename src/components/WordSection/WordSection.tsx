@@ -17,7 +17,7 @@ export function WordSection() {
     <div class="column">
       <div class="label">AUDIO SEARCH</div>
       
-      <WordSearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} setStatus={setStatus} setPastedUrl={setPastedUrl} />
+      <WordSearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} setStatus={setStatus} setPastedUrl={setPastedUrl} setCardStore={setCardStore} />
 
       <AudioZone setCardStore={setCardStore} status={status} searchTerm={searchTerm} 
        audioFile={audioFile} setPastedUrl={setPastedUrl}

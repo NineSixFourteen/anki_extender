@@ -11,7 +11,7 @@ export const handleSpanishDict = (searchTerm: Function) => {
     if (searchTerm()) window.open(`https://www.spanishdict.com/translate/${encodeURIComponent(searchTerm())}`, '_blank');
   };
   
-export const handleMagicFetch = async (searchTerm: Function, setStatus: Function, setPastedUrl: Function) => {
+export const handleMagicFetch = async (searchTerm: Function, setStatus: Function, setPastedUrl: Function, setCardStore: Function) => {
   const word = searchTerm().toLowerCase().trim();
   if (!word) return;
 
@@ -33,6 +33,7 @@ export const handleMagicFetch = async (searchTerm: Function, setStatus: Function
     if (match) {
       const fullUrl = `https://www.wordreference.com${match[0]}`;
       setPastedUrl(fullUrl);
+      setCardStore("Audio", fullUrl);
       setStatus(""); // Success!
     } else {
       throw new Error("ID not found in page");
