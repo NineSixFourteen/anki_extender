@@ -1,12 +1,12 @@
 import { Accessor, Component, createSignal, For, Show } from "solid-js";
-import styles from '../OptionSection.module.css';
+import styles from '../HelpSection.module.css';
 
-interface OptionsTestImports {
+interface HelpTextImports {
     setCardStore: Function,
 
 }
 
-export const OptionText: Component<OptionsTestImports> = (props) => {
+export const HelpText: Component<HelpTextImports> = (props) => {
     
  
     return (

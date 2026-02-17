@@ -1,13 +1,13 @@
 import { Accessor, Component, createSignal, For, Show } from "solid-js";
-import styles from '../OptionSection.module.css';
+import styles from '../HelpSection.module.css';
 
-interface OptionHintsImports {
+interface HelpHintsImports {
     hints: StupidString[],
     setHints: Function,
     setCardStore: Function,
 }
 
-export const OptionHints: Component<OptionHintsImports> = (props) => {
+export const HelpHints: Component<HelpHintsImports> = (props) => {
     
     const addHint = () => {
         if (props.hints.length < 4) {

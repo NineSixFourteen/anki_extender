@@ -1,11 +1,11 @@
 import { createSignal, For, Show } from 'solid-js';
 import { createStore } from 'solid-js/store'; // Use Store for stable list updates
 import { useCards } from '~/lib/Models/CardContext';
-import { OptionSearch } from './OptionSearch/OptionSearch';
-import { OptionHints } from './OptionsHints/OptionsHints';
-import { OptionText } from './OptionsText/OptionsText';
+import { HelpSearch } from './HelpSearch/HelpSearch';
+import { HelpHints } from './HelpHints/HelpHints';
+import { HelpText } from './HelpText/HelpText';
 
-export function OptionSection() {
+export function HelpSection() {
   const [searchTerm, setSearchTerm] = createSignal("");
   
   const [hints, setHints] = createStore<StupidString[]>([]);
@@ -18,9 +18,9 @@ export function OptionSection() {
     <div class="column">
       <div class="label">Help</div>
 
-      <OptionSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <OptionHints hints={hints} setHints={setHints}  setCardStore={setCardStore} />
-      <OptionText setCardStore={setCardStore} />
+      <HelpSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <HelpHints hints={hints} setHints={setHints}  setCardStore={setCardStore} />
+      <HelpText setCardStore={setCardStore} />
       
     </div>
   );

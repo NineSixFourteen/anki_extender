@@ -1,11 +1,11 @@
 import { Accessor, Component, createSignal, Show } from "solid-js";
 
-interface OptionSearchImports {
+interface HelpSearchhImports {
     searchTerm: Function,
     setSearchTerm: Function
 }
 
-export const OptionSearch: Component<OptionSearchImports> = (props) => {
+export const HelpSearch: Component<HelpSearchhImports> = (props) => {
     
       const exampleSentences = () => {
         if (props.searchTerm()) {

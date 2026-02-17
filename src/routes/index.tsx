@@ -6,7 +6,7 @@ import { ImageSection } from "~/components/ImageSection/ImageSection";
 import { WordSection } from "~/components/WordSection/WordSection";
 import { Navbar } from '~/components/Navbar/Navbar';
 import { ActionBar } from '~/components/ActionBar/ActionBar'
-import { OptionSection } from "~/components/OptionSection/OptionSection";
+import { HelpSection } from "~/components/HelpSection/HelpSection";
 
 const handleSearch = (e: Event) => {
   e.preventDefault();
@@ -64,7 +64,7 @@ export default function Home() {
           <div class="grid-container">
             <ImageSection />
             <WordSection/>
-            <OptionSection />
+            <HelpSection />
           </div>
       </div>
     </main>
