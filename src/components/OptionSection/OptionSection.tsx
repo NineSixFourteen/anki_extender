@@ -1,11 +1,14 @@
 import { createSignal, For, Show } from 'solid-js';
 import { createStore } from 'solid-js/store'; // Use Store for stable list updates
 import styles from './OptionSection.module.css';
+import { useCards } from '~/lib/Models/CardContext';
 
 export function OptionSection() {
   const [searchTerm, setSearchTerm] = createSignal("");
   
-  const [hints, setHints] = createStore<{ v: string }[]>([]);
+  const [hints, setHints] = createStore<StupidString[]>([]);
+    const { setCardStore } = useCards();
+  
 
   const exampleSentences = () => {
     if (searchTerm()) {
@@ -15,13 +18,13 @@ export function OptionSection() {
 
   const addHint = () => {
     if (hints.length < 4) {
-      setHints(hints.length, { v: "" });
+      setHints(hints.length, {text:""});
     }
   };
 
   return (
     <div class="column">
-      <div class="label">Other Column</div>
+      <div class="label">Help</div>
 
       <div class="paneSearch">
         <input 
@@ -40,8 +43,11 @@ export function OptionSection() {
               type="text" 
               class={styles.hintInput}
               placeholder={`Hint ${i() + 1}...`} 
-              value={hint.v}
-              onInput={(e) => setHints(i(), 'v', e.currentTarget.value)}
+              value={hint.text}
+              onInput={(e) => {
+                setHints(i(), {text:e.currentTarget.value})
+                setCardStore("Hints",hints);
+              }}
             />
           )}
         </For>

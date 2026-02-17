@@ -2,15 +2,16 @@ import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 import "./app.css";
+import { CardProvider } from "./lib/Models/CardContext";
 
 export default function App() {
   return (
     <Router
       root={(props) => (
-        <>
-          {/* We removed the old nav from here so your index.tsx nav is the only one */}
+        <CardProvider>
           <Suspense>{props.children}</Suspense>
-        </>
+         </CardProvider>
+
       )}
     >
       <FileRoutes />

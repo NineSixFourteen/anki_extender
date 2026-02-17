@@ -85,12 +85,15 @@ nav {
 .label {
   padding: 12px 20px;
   background: var(--label-bg);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: bold;
   font-family: var(--font-mono);
   color: #3b82f6;
   border-bottom: 1px solid var(--main-br);
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .column {

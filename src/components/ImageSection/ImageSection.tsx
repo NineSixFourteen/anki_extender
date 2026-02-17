@@ -1,8 +1,11 @@
 import { createSignal, Show } from "solid-js";
 import s from "./ImageSection.module.css";
+import { useCards } from "~/lib/Models/CardContext";
 
 export function ImageSection() {
   const [imgData, setImgData] = createSignal("");
+
+  const { setCardStore } = useCards();
 
   const handlePaste = (e: ClipboardEvent) => {
     const items = e.clipboardData?.items;
@@ -10,7 +13,12 @@ export function ImageSection() {
     for (const item of items) {
       if (item.type.includes("image")) {
         const reader = new FileReader();
-        reader.onload = (event) => setImgData(event.target?.result as string);
+        let fullDataUrl;
+        reader.onload = (event) => {
+          fullDataUrl = event.target?.result as string;
+          setImgData(fullDataUrl);
+          setCardStore('Image', fullDataUrl.split(',')[1]);
+        };
         reader.readAsDataURL(item.getAsFile()!);
       }
     }
@@ -29,7 +37,7 @@ export function ImageSection() {
 
   return (
     <div class="column">
-      <div class="label">FRONT (IMAGE + EXTRA)</div>
+      <div class="label"><div>Image</div></div>
       
       <div class="paneSearch">
         <input 
@@ -66,6 +74,7 @@ export function ImageSection() {
         name="frontText" 
         placeholder="Add context to image..." 
         class="smallTextarea"
+        onChange={(e) => setCardStore('FrontText', e.currentTarget.value)}
       />
       
       <input type="hidden" name="frontImage" value={imgData()} />
