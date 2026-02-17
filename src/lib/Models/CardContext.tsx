@@ -7,7 +7,8 @@ export interface CardType {
   Audio: String, 
   TargetWord: String, 
   Hints: StupidString[],
-  English: String
+  English: String, 
+  Deck: String
 };
 
 interface CardContextValue {
@@ -26,7 +27,8 @@ export function CardProvider(props: { children: JSX.Element }) {
         Audio: "", 
         TargetWord: "", 
         Hints: [], 
-        English: ""
+        English: "",
+        Deck: "Default"
     });
 
     const cardContext: CardContextValue = {

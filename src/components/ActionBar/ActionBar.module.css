@@ -1,0 +1,56 @@
+.actionBar {
+  width: 100%;
+  background: #161616;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.actionBarInner {
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.controlGroup label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.select {
+  background: #000;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.sendButton {
+  background: #22c55e; /* Vibrant Green */
+  color: #000;
+  border: none;
+  padding: 10px 25px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.sendButton:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
