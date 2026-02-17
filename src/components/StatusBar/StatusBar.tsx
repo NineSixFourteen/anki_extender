@@ -1,7 +1,7 @@
 import { Show } from "solid-js";
 import "./Loading.css";
 import { useStatusBarInfo } from "~/lib/Models/StatusContext";
-import { sendCard } from "~/lib/api";
+import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
 import { useCards } from '~/lib/Models/CardContext';
 
 export function StatusBar() {

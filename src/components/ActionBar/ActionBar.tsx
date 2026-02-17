@@ -1,8 +1,7 @@
 import { createResource, For, Show } from 'solid-js';
 import s from './ActionBar.module.css';
 import { useCards } from '~/lib/Models/CardContext';
-import { useStatusBarInfo } from '~/lib/Models/StatusContext';
-import { fetchAnkiDecks } from '~/lib/api';
+import { fetchAnkiDecks } from '~/lib/AnkiFetch';
 
 export function ActionBar(){
 

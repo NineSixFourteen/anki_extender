@@ -21,6 +21,15 @@ export const AudioZone: Component<AudioZoneImports> = (props) => {
     return (props.pastedUrl().startsWith("http")) ? props.pastedUrl() : "";
   });
 
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // This converts to base64
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
     return (
       <div class="zone" tabindex="0">
         <WordToast status={props.status}/>
@@ -29,7 +38,17 @@ export const AudioZone: Component<AudioZoneImports> = (props) => {
           <Show when={activePreviewUrl()} fallback={
             <>
               <label class={s.audioLabel}>
-                <input type="file" onChange={(e) => props.setAudioFile(e.target.files?.[0] || null)} class={s.hiddenInput} />
+                <input type="file" onChange={async (e) => {
+                  props.setAudioFile(e.target.files?.[0] || null);
+                  const file = e.target.files?.[0];
+                  let base64String;
+                  if(file){
+                    base64String = await fileToBase64(file);
+                    const rawBase64 = base64String.split(',')[1];
+                    props.setCardStore("Audio",rawBase64);
+                  } 
+                }
+                }class={s.hiddenInput} />
               </label>
               <div class={s.divider}>— OR —</div>
               <input 
@@ -38,13 +57,8 @@ export const AudioZone: Component<AudioZoneImports> = (props) => {
                 class={s.urlInput}
                 value={props.pastedUrl()}
                 onInput={async (e) => {
-                  if (e.currentTarget.value.startsWith("http://")){
-                    const response = fetch(e.currentTarget.value);
-                    const reader = new FileReader();
-                    reader.onload =async () => {
-                      const base64Data = (reader.result as string).split(",")[1];
-                      props.setCardStore(base64Data);
-                    } 
+                  if (e.currentTarget.value.startsWith("http://") || e.currentTarget.value.startsWith("https://") ){
+                      props.setCardStore("Audio",e.currentTarget.value);
                   }
                   props.setPastedUrl(e.currentTarget.value);
                 }} 
