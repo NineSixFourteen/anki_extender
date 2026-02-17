@@ -1,5 +1,5 @@
 import { Accessor, Component, createSignal, Show } from "solid-js";
-import s from "./WordSection.module.css";
+import s from "../WordSection.module.css";
 
 interface WordToastImports {
     status: Accessor<string>,

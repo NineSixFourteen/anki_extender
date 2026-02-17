@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
-import s from "./WordSection.module.css";
+import s from "../WordSection.module.css";
 import { handleForvo, handleMagicFetch, handleSpanishDict, handleWordReference } from "./api";
 
 

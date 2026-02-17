@@ -1,5 +1,5 @@
 import { Accessor, Component, createMemo, createSignal, Show } from "solid-js";
-import s from "./WordSection.module.css";
+import s from "../WordSection.module.css";
 import { WordToast } from "./WordToast";
 
 interface AudioZoneImports {
@@ -11,7 +11,6 @@ interface AudioZoneImports {
     setAudioFile: Function,
     
 }
-
 
 
 export const AudioZone: Component<AudioZoneImports> = (props) => {
