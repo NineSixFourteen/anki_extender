@@ -10,10 +10,10 @@ interface AudioZoneImports {
     pastedUrl: Function,
     setAudioFile: Function,
     setCardStore: Function,
-
 }
 
 export const AudioZone: Component<AudioZoneImports> = (props) => {
+  
 
   const activePreviewUrl = createMemo(() => {
     const file = props.audioFile();
@@ -53,7 +53,7 @@ export const AudioZone: Component<AudioZoneImports> = (props) => {
           }>
             <div class={s.previewWrapper}>
               <audio controls src={activePreviewUrl()} class={s.audioPreview} />
-              <button type="button" class={s.clearBtn} onClick={() => { props.setAudioFile(null); props.setPastedUrl(""); }}>✕ Clear</button>
+              <button type="button" class={s.clearBtn} onClick={() => { props.setAudioFile(null); props.setPastedUrl(""); props.setCardStore('Audio', '') }}>✕ Clear</button>
             </div>
           </Show>
         </div>

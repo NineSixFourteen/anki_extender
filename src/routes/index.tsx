@@ -3,11 +3,12 @@ import { WordSection } from "~/components/WordSection/WordSection";
 import { Navbar } from '~/components/Navbar/Navbar';
 import { ActionBar } from '~/components/ActionBar/ActionBar'
 import { HelpSection } from "~/components/HelpSection/HelpSection";
+import { StatusBar } from "~/components/StatusBar/StatusBar";
 
 export default function Home() {
 
   return (
-    <main>
+    <main class="pb-24">
       <Navbar />
       <ActionBar/>
       <div class="main-wrapper">
@@ -17,6 +18,7 @@ export default function Home() {
             <HelpSection />
           </div>
       </div>
+      <StatusBar />
     </main>
   );
 }
