@@ -3,6 +3,7 @@ import "./Loading.css";
 import { useStatusBarInfo } from "~/lib/Models/StatusContext";
 import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
 import { useCards } from '~/lib/Models/CardContext';
+import './StatusBar.css'
 
 export function StatusBar() {
   const { StatusContext, setStatusContext} = useStatusBarInfo();

@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import s from './Navbar.module.css'; // If using modules, otherwise use global classes
+import './Navbar.css'; 
 
 export function Navbar() {
   return (

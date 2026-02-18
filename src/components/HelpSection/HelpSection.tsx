@@ -1,5 +1,5 @@
 import { createSignal, For, Show } from 'solid-js';
-import { createStore } from 'solid-js/store'; // Use Store for stable list updates
+import { createStore } from 'solid-js/store'; 
 import { useCards } from '~/lib/Models/CardContext';
 import { HelpSearch } from './HelpSearch/HelpSearch';
 import { HelpHints } from './HelpHints/HelpHints';

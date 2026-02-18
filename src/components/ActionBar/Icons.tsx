@@ -2,7 +2,7 @@ export function PlusIcon() {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      width="20" 
+      width="22" 
       height="20" 
       viewBox="0 0 24 24" 
       fill="none" 
@@ -23,7 +23,7 @@ export function TickIcon() {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      width="20" 
+      width="22" 
       height="20" 
       viewBox="0 0 24 24" 
       fill="none" 
@@ -42,8 +42,8 @@ export function TrashIcon() {
   return (
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      width="18" 
-      height="18" 
+      width="22" 
+      height="20" 
       viewBox="0 0 24 24" 
       fill="none" 
       stroke="currentColor" 

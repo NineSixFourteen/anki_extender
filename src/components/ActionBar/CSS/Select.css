@@ -1,0 +1,51 @@
+.SelectWord {
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.controlGroup label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.selectDeck {
+  background: #000;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Container and Typography */
+.toolbar-container {
+  display: flex;
+  width: 100%;
+
+}
+
+.toolbar-select {
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: white;
+  outline: none;
+  min-width: 150px;
+  height: 3.8vh;
+}
+
+.toolbar-select:focus {
+  border-color: #22c55e;
+}

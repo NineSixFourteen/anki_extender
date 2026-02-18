@@ -1,0 +1,55 @@
+
+.split-btn-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.btn-main, .btn-arrow, .btn-single {
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.btn-main {
+  padding: 4px;
+  border-radius: 4px 0 0 4px;
+  height: 3.8vh;
+  border: 1px solid #161616;  
+}
+
+.btn-arrow {
+  padding: 2px;
+  border-radius: 0 4px 4px 0;
+  border-left: 0;
+  height: 3.8vh;
+  border: 1px solid #161616; 
+}
+
+.btn-single {
+  height: 3.8vh;
+  width: 2.5vw;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Color Themes */
+.btn-green { background-color: #22c55e; color: #052e16; }
+.btn-green:hover { background-color: #4ade80; }
+
+.btn-blue { background-color: #422006; color: white; font-style: italic; }
+.btn-blue:hover { background-color: #92400e }
+
+.btn-yellow { background-color: #eab308; color: #422006; font-style: italic; }
+.btn-yellow:hover { background-color: #facc15; }
+
+.btn-grey { background-color: #4b5563; color: white; opacity: 0.5; }
+
+.button-group{
+  display: flex;
+  gap: 8px
+}
