@@ -47,6 +47,7 @@ export async function sendAudioToAnki(CardStore:any,setStatusContext:Function){
 }
 
 export async function sendCardToAnki(CardStore:any,setStatusContext:Function){
+  console.log(CardStore.Hints[0].text);
   const response = await fetch("http://127.0.0.1:8765", {
     method: "POST",
     body: JSON.stringify({
@@ -59,11 +60,11 @@ export async function sendCardToAnki(CardStore:any,setStatusContext:Function){
           fields: {
             FrontText: String(CardStore.FrontText || ""),
             TargetWord: String(CardStore.TargetWord || ""),
-            Hint_1: String(CardStore.Hints[0] || ""),
-            Hint_2: String(CardStore.Hints[1] || ""),
-            Hint_3: String(CardStore.Hints[2] || ""),
-            Hint_4: String(CardStore.Hints[3] || ""),
-            English: String(CardStore.English || ""),
+            Hint_1: String(CardStore.Hints[0]? CardStore.Hints[0].text: "").toLocaleLowerCase(),
+            Hint_2: String(CardStore.Hints[1]? CardStore.Hints[1].text: "").toLocaleLowerCase(),
+            Hint_3: String(CardStore.Hints[2]? CardStore.Hints[2].text: "").toLocaleLowerCase(),
+            Hint_4: String(CardStore.Hints[3]? CardStore.Hints[3].text: "" ).toLocaleLowerCase(),
+            English: String(CardStore.English || "").toLocaleLowerCase(),
             Audio: `[sound:${CardStore.TargetWord}.mp3]` || "",
             Image: `<img src="${CardStore.TargetWord}.jpg">` || ""
           }
