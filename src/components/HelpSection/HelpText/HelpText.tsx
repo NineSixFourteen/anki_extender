@@ -2,8 +2,10 @@ import { Accessor, Component, createSignal, For, Show } from "solid-js";
 
 interface HelpTextImports {
     setCardStore: Function,
-
+    englishText: Function,
+    setEnglishText:Function
 }
+
 export const HelpText: Component<HelpTextImports> = (props) => {
     
     return (
@@ -15,7 +17,8 @@ export const HelpText: Component<HelpTextImports> = (props) => {
                 name="frontText" 
                 placeholder="Type english word or sentence idc..." 
                 class="smallTextarea"
-                onChange={(e) => props.setCardStore('English', e.currentTarget.value)} 
+                value={props.englishText()}
+                onChange={(e) => {props.setCardStore('English', e.currentTarget.value);props.setEnglishText(e.currentTarget.value)}} 
             />
         </>
     )

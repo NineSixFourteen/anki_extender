@@ -47,7 +47,6 @@ export async function sendAudioToAnki(CardStore:any,setStatusContext:Function){
 }
 
 export async function sendCardToAnki(CardStore:any,setStatusContext:Function){
-  console.log(CardStore.Hints[0].text);
   const response = await fetch("http://127.0.0.1:8765", {
     method: "POST",
     body: JSON.stringify({

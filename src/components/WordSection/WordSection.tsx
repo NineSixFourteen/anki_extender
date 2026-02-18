@@ -1,4 +1,4 @@
-import { createSignal, createMemo, Show, Component } from "solid-js";
+import { createSignal, createMemo, Show, Component, onMount } from "solid-js";
 import { WordSearch } from "./WordSearch/WordSearch";
 import { AudioZone } from "./AudioZone/AudioZone";
 import { WordTarget } from "./WordTarget/WordTarget";
@@ -9,6 +9,7 @@ interface WordSectionImports {
     setAudioSearch: Function,
     targetWord: Function,
     setTargetWord: Function,
+    ref:any
 
 }
 
@@ -20,6 +21,16 @@ export const WordSection: Component<WordSectionImports> = (props) => {
   
   const { setCardStore } = useCards();
 
+  function clearDown(){
+    setAudioFile(null);
+    setPastedUrl("");
+  }
+
+  onMount(() => {
+    props.ref({
+      clear: () => clearDown()
+    });
+  });
 
   return (
     <div class="column">

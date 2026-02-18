@@ -2,6 +2,8 @@ import { Accessor, Component, createSignal, Show } from "solid-js";
 
 interface ImageTextImports {
     setCardStore: Function,
+    frontText: Function,
+    setFrontText: Function
 }
 
 export const ImageText: Component<ImageTextImports> = (props) => {
@@ -16,7 +18,11 @@ export const ImageText: Component<ImageTextImports> = (props) => {
                 name="frontText" 
                 placeholder="Add context to image..." 
                 class="smallTextarea"
-                onChange={(e) => props.setCardStore('FrontText', e.currentTarget.value)}
+                value={props.frontText()}
+                onChange={(e) =>{ 
+                    props.setCardStore('FrontText', e.currentTarget.value)
+                    props.setFrontText(e.currentTarget.value)
+                }}
             />
       </>
     )
