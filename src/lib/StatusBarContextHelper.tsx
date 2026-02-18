@@ -5,7 +5,6 @@ export function updateStatus(field:any, status:number,text:string, setStatusCont
 }
 
 export function handleResponse(result:any, field:string, setStatusContext:Function){
-  console.log("Field: " + field + ", isError: " + (result.error ? true : false) + ", Error:" + result.error)
   if (result.error) {
     updateStatus(
       field == 'Image' ? "SendImage" : field == 'Audio' ? 'SendAudio' : 'SendCard', 
