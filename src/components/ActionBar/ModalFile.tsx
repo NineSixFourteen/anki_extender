@@ -7,6 +7,7 @@ interface ModalFileImports {
     setIsModalOpen: Function,
     wordStore: string[],
     setWordStore: Function,
+    setCurrentWord: Function,
 
 }
 
@@ -16,9 +17,13 @@ const ModalFile: Component<ModalFileImports> = (props) => {
     const [selectedDelim, setSelectedDelim] = createSignal(",");
 
     function loadWords(){
-        for(const word of GetWords()){
-            if(word.length != 0) props.setWordStore(props.wordStore.length, word);
-        }
+      const words = GetWords();
+      if(props.wordStore.length == 0 && words.length > 0){
+        props.setCurrentWord(words[0]);
+      }
+      for(const word of words){
+          if(word.length != 0) props.setWordStore(props.wordStore.length, word);
+      }
         props.setIsModalOpen(false);
     }
 

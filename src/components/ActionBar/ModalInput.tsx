@@ -7,7 +7,7 @@ interface ModalInputImports {
     setIsModalOpen: Function,
     wordStore: string[],
     setWordStore: Function,
-
+    setCurrentWord:Function
 }
 
 export const ModalInput: Component<ModalInputImports> = (props) => {
@@ -36,7 +36,11 @@ export const ModalInput: Component<ModalInputImports> = (props) => {
               </div>
               <button class="btn-secondary" onClick={() => props.setIsModalOpen(false)}>Cancel</button>
               <button class="btn-main btn-green" onClick={() => {
-                for(const word of GetWords()){
+                const words = GetWords();
+                if(props.wordStore.length == 0 && words.length > 0){
+                  props.setCurrentWord(words[0]);
+                }
+                for(const word of words){
                   props.setWordStore(props.wordStore.length, word);
                 }
                 props.setIsModalOpen(false);

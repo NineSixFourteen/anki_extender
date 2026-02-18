@@ -1,13 +1,21 @@
-import { createSignal, createMemo, Show } from "solid-js";
+import { createSignal, createMemo, Show, Component } from "solid-js";
 import { WordSearch } from "./WordSearch/WordSearch";
 import { AudioZone } from "./AudioZone/AudioZone";
 import { WordTarget } from "./WordTarget/WordTarget";
 import { useCards } from "~/lib/Models/CardContext";
 
-export function WordSection() {
+interface WordSectionImports {
+    audioSearch: Function,
+    setAudioSearch: Function,
+    targetWord: Function,
+    setTargetWord: Function,
+
+}
+
+export const WordSection: Component<WordSectionImports> = (props) => {
+
   const [audioFile, setAudioFile] = createSignal<File | null>(null);
   const [pastedUrl, setPastedUrl] = createSignal("");
-  const [searchTerm, setSearchTerm] = createSignal("");
   const [status, setStatus] = createSignal(""); 
   
   const { setCardStore } = useCards();
@@ -17,14 +25,14 @@ export function WordSection() {
     <div class="column">
       <div class="label">AUDIO SEARCH</div>
       
-      <WordSearch setSearchTerm={setSearchTerm} searchTerm={searchTerm} setStatus={setStatus} setPastedUrl={setPastedUrl} setCardStore={setCardStore} />
+      <WordSearch setSearchTerm={props.setAudioSearch} searchTerm={props.audioSearch} setStatus={setStatus} setPastedUrl={setPastedUrl} setCardStore={setCardStore} />
 
-      <AudioZone setCardStore={setCardStore} status={status} searchTerm={searchTerm} 
+      <AudioZone setCardStore={setCardStore} status={status} searchTerm={props.audioSearch} 
        audioFile={audioFile} setPastedUrl={setPastedUrl}
        pastedUrl={pastedUrl} setAudioFile={setAudioFile} 
       />
 
-      <WordTarget setCardStore={setCardStore} />
+      <WordTarget setCardStore={setCardStore} targetWord={props.targetWord} setTargetWord={props.setTargetWord} />
 
     </div>
   );

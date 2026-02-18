@@ -16,6 +16,7 @@ export const WordSearch: Component<WordSearchImports> = (props) => {
         <input 
           type="text" 
           placeholder="Type word..." 
+          value={props.searchTerm()}
           onInput={(e) => props.setSearchTerm(e.currentTarget.value)}
         />
         <WordButtons searchTerm={props.searchTerm}  setStatus={props.setStatus} setPastedUrl={props.setPastedUrl} setCardStore={props.setCardStore} />

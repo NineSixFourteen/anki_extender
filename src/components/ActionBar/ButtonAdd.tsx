@@ -10,6 +10,7 @@ import ModalFile from "./ModalFile";
 interface ButtonAddImports {
     setWordStore: Function,
     wordStore: string[],
+    setCurrentWord: Function
 
 }
 
@@ -31,10 +32,10 @@ export const ButtonAdd: Component<ButtonAddImports> = (props) => {
                         > <PlusIcon/> </button>
 
                         <ModalInput isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}
-                                    wordStore={props.wordStore} setWordStore={props.setWordStore}
+                                    wordStore={props.wordStore} setWordStore={props.setWordStore} setCurrentWord={props.setCurrentWord}
                         />
                         <ModalFile isModalOpen={isModaFilelOpen} setIsModalOpen={setIsModalFileOpen}
-                                    wordStore={props.wordStore} setWordStore={props.setWordStore}
+                                    wordStore={props.wordStore} setWordStore={props.setWordStore} setCurrentWord={props.setCurrentWord}
                         />
                         <Show when={isVisible()}>
                             <div class="input-popup">
@@ -53,7 +54,12 @@ export const ButtonAdd: Component<ButtonAddImports> = (props) => {
                                         </Show>
                                         <Show when={inputValue().length != 0}>
                                             <button onClick={() => {
-                                                props.setWordStore(props.wordStore.length, inputValue);
+                                                if(props.wordStore.length == 0 && inputValue().length > 0){
+                                                    props.setCurrentWord(inputValue);
+                                                }
+                                                if(inputValue().length > 0){
+                                                    props.setWordStore(props.wordStore.length, inputValue);
+                                                }
                                                 setInputValue("")
                                                 setIsVisible(false)
                                             }}>Add</button>

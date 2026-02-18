@@ -1,10 +1,18 @@
 import { Accessor, Component, createSignal, Show } from "solid-js";
 
 
-export const ImageSearch: Component = () => {
+
+interface ImageSearchImports {
+    imageSearch: Function,
+    setImageSearch: Function,
+
+
+}
+
+export const ImageSearch: Component<ImageSearchImports> = (props) => {
 
     const openSearch = () => {
-        const query = (document.getElementById('imgSearch') as HTMLInputElement).value;
+        const query = props.imageSearch();
         if (query) {
         window.open(
             `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(query)}`,
@@ -19,8 +27,9 @@ export const ImageSearch: Component = () => {
         <input 
           id="imgSearch" 
           type="text" 
+          value={props.imageSearch()}
           placeholder="Search for image..." 
-          onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), openSearch())}
+          onChange={(e) => props.setImageSearch(e.currentTarget.value)}
         />
         <button type="button" class="searchButton" onClick={() => openSearch()}>FIND</button>
       </div>
