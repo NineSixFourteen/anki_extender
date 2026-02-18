@@ -37,7 +37,7 @@ export const ActionBar: Component<ActionBarImports> = (props) => {
             <SelectWord wordStore={wordStore} currentWord={currentWord} setCurrentWord={setCurrentWord}  />
             <div class='button-group'>
               <ButtonAdd setCurrentWord={setCurrentWord} wordStore={wordStore} setWordStore={setWordStore} />
-              <ButtonPop setWordStore={setWordStore} />
+              <ButtonPop wordStore={wordStore} setCurrentWord={setCurrentWord} setWordStore={setWordStore} />
               <ButtonSet currentWord={currentWord} loadWord={props.loadWord} />
               <button class="btn-single btn-grey">---</button>
             </div>

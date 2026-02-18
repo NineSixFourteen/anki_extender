@@ -6,9 +6,16 @@ import { ChevronDown } from "lucide-solid";
 
 interface ButtonPopImports {
     setWordStore: Function,
+    wordStore: string[], 
+    setCurrentWord:Function
 
 }
 export const ButtonPop: Component<ButtonPopImports> = (props) => {
+
+    function pop(num:number){
+      props.setWordStore((prev: string | any[]) => prev.slice(num))
+      props.setCurrentWord(props.wordStore[0]);
+    }
     
     return (
             <DropdownMenu placement='bottom-end'>
@@ -16,7 +23,7 @@ export const ButtonPop: Component<ButtonPopImports> = (props) => {
                 <div class="split-btn-wrapper">
                   <button 
                     class="btn-main btn-blue" 
-                    onClick={() => props.setWordStore((prev: string | any[]) => prev.slice(1))}
+                    onClick={() => pop(1)}
                   > 
                     <TrashIcon />
                   </button>
@@ -26,7 +33,7 @@ export const ButtonPop: Component<ButtonPopImports> = (props) => {
                 </div>
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content class="dropdown-content">
-                    <DropdownMenu.Item class="dropdown-item" onClick={() => props.setWordStore((prev: string | any[]) => prev.slice(5))}>Pop 5 </DropdownMenu.Item>
+                    <DropdownMenu.Item class="dropdown-item" onClick={() =>pop(5)}>Pop 5 </DropdownMenu.Item>
                     <DropdownMenu.Item class="dropdown-item" onClick={() => props.setWordStore([])}>Pop All</DropdownMenu.Item>
                   </DropdownMenu.Content>
                 </DropdownMenu.Portal>
