@@ -16,7 +16,7 @@ export const ButtonPop: Component<ButtonPopImports> = (props) => {
                 <div class="split-btn-wrapper">
                   <button 
                     class="btn-main btn-blue" 
-                    onClick={() => console.log("POP")}
+                    onClick={() => props.setWordStore((prev: string | any[]) => prev.slice(1))}
                   > 
                     <TrashIcon />
                   </button>
@@ -26,8 +26,8 @@ export const ButtonPop: Component<ButtonPopImports> = (props) => {
                 </div>
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content class="dropdown-content">
-                    <DropdownMenu.Item class="dropdown-item">Pop 5 </DropdownMenu.Item>
-                    <DropdownMenu.Item class="dropdown-item">Pop All</DropdownMenu.Item>
+                    <DropdownMenu.Item class="dropdown-item" onClick={() => props.setWordStore((prev: string | any[]) => prev.slice(5))}>Pop 5 </DropdownMenu.Item>
+                    <DropdownMenu.Item class="dropdown-item" onClick={() => props.setWordStore([])}>Pop All</DropdownMenu.Item>
                   </DropdownMenu.Content>
                 </DropdownMenu.Portal>
               </div>
