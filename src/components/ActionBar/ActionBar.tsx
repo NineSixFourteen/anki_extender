@@ -11,6 +11,7 @@ import './CSS/Button.css'
 import './CSS/Dropdown.css'
 import './CSS/Select.css'
 import './CSS/ActionBar.css'
+import { createPersistentStore } from '~/lib/Storage';
 
 
 interface ActionBarImports {
@@ -22,7 +23,7 @@ export const ActionBar: Component<ActionBarImports> = (props) => {
 
   const [decks] = createResource(fetchAnkiDecks);
   const {setCardStore} = useCards();
-  const [wordStore, setWordStore] = createStore<string[]>([]);
+  const [wordStore, setWordStore] = createPersistentStore<string[]>("store",[]);
   const [currentWord, setCurrentWord] = createSignal("");
 
 
