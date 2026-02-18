@@ -28,7 +28,7 @@ export function ActionBar(){
           <div class="rightSide">
             <SelectWord wordStore={wordStore}  />
             <div class='button-group'>
-              <ButtonAdd setWordStore={setWordStore} />
+              <ButtonAdd wordStore={wordStore} setWordStore={setWordStore} />
               <ButtonPop setWordStore={setWordStore} />
               <ButtonSet setWordStore={setWordStore} />
               <button class="btn-single btn-grey">---</button>
