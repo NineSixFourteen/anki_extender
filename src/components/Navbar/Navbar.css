@@ -1,4 +1,3 @@
-
 nav {
   width: 100%;
   height: 60px;
@@ -24,4 +23,62 @@ nav {
   font-weight: 800;
   color: var(--accent-blue);
   letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* New styles for your navigation links */
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--accent-blue);
+}
+
+/* Solid Router automatically adds this class to the active link */
+.nav-link.active {
+  color: var(--accent-blue);
+  border-bottom: 2px solid var(--accent-blue);
+}
+
+/* Keep your existing nav and .nav-inner styles exactly as they were */
+
+.nav-brand {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: var(--accent-blue); /* Or #fff if you prefer the old white look */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem; /* Spacing between Basic and Phrases */
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: var(--accent-blue);
+}
+
+/* Optional: shows which page you are on */
+.nav-link.active {
+  opacity: 1;
+  color: var(--accent-blue);
 }
