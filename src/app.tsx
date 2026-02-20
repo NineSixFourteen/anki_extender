@@ -1,14 +1,12 @@
 import { Route, Router } from "@solidjs/router";
-import { FileRoutes } from "@solidjs/start/router";
-import { lazy, onMount, Suspense } from "solid-js";
+import { Suspense } from "solid-js";
 import "./app.css";
 import { Navbar } from "./components/Navbar/Navbar";
-import Basic from "./routes/Basic";
+import Basic from "./routes/basic";
 import Home from "./routes";
-import Phrases from "./routes/Phrases"
+import Phrases from "./routes/phrases";
 
 export default function App() {
-
 
   return (
     <Router
@@ -23,7 +21,7 @@ export default function App() {
       )}
     >
       <Route path="/basic" component={Basic} />
-      <Route path="/pharses" component={Phrases} />
+      <Route path="/phrases" component={Phrases} />
       <Route path="/" component={Home} />
     </Router>
   );

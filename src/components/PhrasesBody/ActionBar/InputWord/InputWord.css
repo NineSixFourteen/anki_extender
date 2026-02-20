@@ -1,0 +1,24 @@
+.inputLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px
+
+}
+
+.inputLabel label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.inputInput {
+  flex: 1;
+  background: var(--main-input-bg);
+  color: #fff;
+  border: 1px solid #333;
+  padding: 8px 12px ;
+  font-size: 0.9rem;
+  border-radius: 4px !important;
+  outline: none;
+}
