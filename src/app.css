@@ -44,6 +44,7 @@ html, body {
   display: flex;
   flex-direction: column;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  min-height: 600px;
 }
 /* The grid the columns sit in */
 .grid-container {
@@ -147,3 +148,31 @@ html, body {
 
 
 
+/* General Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+/* The track (background) */
+::-webkit-scrollbar-track {
+  background: #0a0a0a; /* Matches your background color */
+}
+
+/* The draggable handle */
+::-webkit-scrollbar-thumb {
+  background: #333; /* Dark gray handle */
+  border-radius: 10px; /* Makes it rounded/pill-shaped */
+  border: 2px solid #0a0a0a; /* Creates "padding" around the thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5; /* Changes to your accent color on hover */
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 #0a0a0a;
+}

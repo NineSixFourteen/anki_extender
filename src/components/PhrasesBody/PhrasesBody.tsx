@@ -2,15 +2,14 @@ import { For } from "solid-js";
 import './PhrasesBody.css'
 import ActionBar from "./ActionBar/ActionBar";
 import PhrasesMain from "./PhrasesMain/PhrasesMain";
+import { StatusBar } from "../StatusBar/StatusBar";
 
 export default function PhrasesBody() {
-  const exampleSentences = [1, 2, 3, 4, 5];
 
   return (
-    <main>
+    <main class="pb-24">
     <ActionBar />
     <PhrasesMain />
-
     </main>
   );
 }

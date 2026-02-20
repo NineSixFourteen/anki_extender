@@ -1,12 +1,29 @@
+.sentenceTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var( --label-bg);
+    border: 1px solid var(--main-bg);
+    margin-bottom: 8px;
+    padding: 12px 15px;
+    transition: border-color 0.2s;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 .sentenceCard {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0a0a0a;
-    border: 2px solid #333;
-    margin-bottom: 8px;
-    padding: 12px 15px;
+    background-color: var( --main-bg);
+    border: 2px dashed #333;
+    margin: 8px;
+    padding: 15px;
     transition: border-color 0.2s;
+    height: 150px;
+
 }
 
 .sentenceCard:hover {
@@ -18,9 +35,12 @@
     color: #bbb;
 }
 
-.SpanishCol{
-
-}
-.EnglishCol{
-
+.sentence-head {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #3b82f6;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 33%;
 }
