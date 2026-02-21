@@ -16,7 +16,7 @@ function checkForMissingFields(CardStore:any, setStatusContext:Function){
     updateStatus("CheckRequest",0,"Error: Missing fields -\n " + missingFieldText, setStatusContext);
 }
 
-export async function sendCard(setStatusContext:Function, CardStore:any) {
+export async function sendCard(setStatusContext:Function, CardStore:any, incCount:Function) {
 
   resetStatusBar(setStatusContext)
   let skipImage = false;
@@ -60,6 +60,9 @@ export async function sendCard(setStatusContext:Function, CardStore:any) {
     },
     {
       condition: async () => await sendCardToAnki(CardStore,setStatusContext),
+      then:() => {
+        incCount();
+      },
       continueIfFail: false
     }
   ]

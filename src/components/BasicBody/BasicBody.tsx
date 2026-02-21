@@ -5,12 +5,16 @@ import { HelpSection } from "~/components/HelpSection/HelpSection";
 import { StatusBar } from "~/components/StatusBar/StatusBar";
 import { createSignal } from "solid-js";
 import { CardProvider, useCards } from "~/lib/Models/CardContext";
-import { StatusProvider } from "~/lib/Models/StatusContext";
+import { StatusProvider, useStatusBarInfo } from "~/lib/Models/StatusContext";
+import LoadingBar from "../LoadingBar/LoadingBar";
 
 export default function BasicBody() {
   const [targetWord, setTargetWord] = createSignal<string>("");
   const [imageSearch, setImageSearch] = createSignal<string>("");
   const [audioSearch, setAudioSearch] = createSignal<string>("");
+  const [count, setCount] = createSignal<number>(0);
+  
+  const { StatusContext, setStatusContext} = useStatusBarInfo();
 
   const {setCardStore} = useCards();
 
@@ -34,7 +38,6 @@ export default function BasicBody() {
     clear:Function
   }
   
-
   let clearHints:ref = {
     clear: () => {}
   }
@@ -55,7 +58,8 @@ export default function BasicBody() {
                 <HelpSection ref={(el:any) => (clearHints = el)} />
             </div>
         </div>
-        <StatusBar />
+        <LoadingBar status={[StatusContext.CheckRequest,StatusContext.SendImage,StatusContext.SendAudio,StatusContext.SendCard]} />
+        <StatusBar count={count} setCount={setCount} />
     </main>
   );
 }

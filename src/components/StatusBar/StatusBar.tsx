@@ -1,13 +1,27 @@
-import { Show } from "solid-js";
+import { Component, Show } from "solid-js";
 import "./Loading.css";
 import { useStatusBarInfo } from "~/lib/Models/StatusContext";
 import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
 import { useCards } from '~/lib/Models/CardContext';
 import './StatusBar.css'
+import CardCoutner from "./CardCounter/CardCounter";
 
-export function StatusBar() {
+interface StatusBarImports {
+    count:Function,
+    setCount:Function
+
+}
+
+export const StatusBar: Component<StatusBarImports> = (props) => {
+
   const { StatusContext, setStatusContext} = useStatusBarInfo();
   const { CardStore} = useCards();
+  
+  function incCount(){
+    let count = props.count();
+    props.setCount(count + 1);
+  }
+
 
   function getStatusClass(state: Number){
     switch (state) {
@@ -32,14 +46,8 @@ export function StatusBar() {
   return (
     <footer class="status-footer">
       <div class="status-container">
-        
-        <div class="status-row">
-          <div class={`status-segment ${getStatusClass(StatusContext.CheckRequest)}`}>Check Request: {getStatusText(StatusContext.CheckRequest)}</div>
-          <div class={`status-segment ${getStatusClass(StatusContext.SendImage)}`}>Send Image: {getStatusText(StatusContext.SendImage)}</div>
-          <div class={`status-segment ${getStatusClass(StatusContext.SendAudio)}`}>Send Audio: {getStatusText(StatusContext.SendAudio)}</div>
-          <div class={`status-segment ${getStatusClass(StatusContext.SendCard)}`}>Send Card: {getStatusText(StatusContext.SendCard)}</div>
-        </div>
-
+        <CardCoutner label={"Total cards sent: "} value={props.count()} />
+      
         <div class="display-container">
             <Show when={StatusContext.ShowLoading}>
                 <div class="loader-container">
@@ -53,7 +61,7 @@ export function StatusBar() {
         </div>
 
 
-        <button class="controlGroup" onClick={() => sendCard(setStatusContext, CardStore)}>
+        <button class="controlGroup" onClick={() => sendCard(setStatusContext, CardStore,incCount)}>
             <div class="sendButton">
                 SEND ⇒
             </div>

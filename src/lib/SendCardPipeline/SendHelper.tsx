@@ -74,6 +74,7 @@ export async function sendCardToAnki(CardStore:any,setStatusContext:Function){
 
   const result = await response.json();
   handleResponse(result,'Card',setStatusContext);
+  return result.error ? false : true;
 }
 
 function logAnki(CardStore:any) {

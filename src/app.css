@@ -9,6 +9,11 @@
   --text-main: #ffffff;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   --small-text-bg: #080808;
+  --status-bar-ht: 120px;
+  --loading-bar-ht:8px;
+  --status-btn-ht:90px;
+  --status-btn-mr:15px 0;
+  --status-btn-wd:220px
 }
 
 /* General Page things */
