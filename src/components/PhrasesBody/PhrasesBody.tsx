@@ -22,9 +22,9 @@ export default function PhrasesBody() {
       <StatusProvider>
         <main class="pb-24">
           <ActionBar />
-          <PhrasesMain setSelectedWords={setSelectedPhrases} incCount={incCount} />
+          <PhrasesMain setSelectedWords={setSelectedPhrases} incCount={incCount}/>
 
-          <StatusBar count={count} phrases={selectedPhrases}/>
+          <StatusBar count={count} setCount={setCount} phrases={selectedPhrases}  setSelectedPhrases={setSelectedPhrases} />
         </main>
       </StatusProvider>
     </SentenceProvider>

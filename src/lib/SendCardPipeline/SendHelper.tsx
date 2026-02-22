@@ -60,7 +60,7 @@ export async function sendAudiosToAnki(phrases:Phrases,setStatusContext:Function
   return true;
 }
 
-export async function sendCardsToAnki(phrases:Phrases, setStatusContext:Function){
+export async function sendCardsToAnki(phrases:Phrases, setStatusContext:Function,removeId:Function){
   for(const data of phrases.phrases){
     const response = await fetch("http://127.0.0.1:8765", {
       method: "POST",
@@ -84,6 +84,8 @@ export async function sendCardsToAnki(phrases:Phrases, setStatusContext:Function
       if(result.error){
         handleResponse(result,'Card',setStatusContext);
         return false
+      } else {
+        removeId(data.id);
       }
   }
   return  true;

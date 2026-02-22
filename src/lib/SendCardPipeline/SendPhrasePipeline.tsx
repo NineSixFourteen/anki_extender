@@ -2,10 +2,9 @@ import { Phrases } from "../Models/SentencesContext";
 import { sendAudiosToAnki, sendCardsToAnki, sendCardToAnki } from "./SendHelper";
 import { updateStatus, resetStatusBar } from "../StatusBarContextHelper";
 
-export async function sendPhrases(setStatusContext:Function, phrases:Phrases) {
+export async function sendPhrases(setStatusContext:Function, phrases:Phrases,removeId:Function) {
 
   resetStatusBar(setStatusContext)
-  let skipImage = false;
 
   const pipeline = [
     {
@@ -27,7 +26,7 @@ export async function sendPhrases(setStatusContext:Function, phrases:Phrases) {
       continueIfFail: false
     },
     {
-      condition: async () => await sendCardsToAnki(phrases,setStatusContext),
+      condition: async () => await sendCardsToAnki(phrases,setStatusContext, removeId),
       continueIfFail: false
     }
   ]

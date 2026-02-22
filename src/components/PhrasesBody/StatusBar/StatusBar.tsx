@@ -1,12 +1,15 @@
 import { Component, createResource, createSignal, Show} from 'solid-js';
 import CardCoutner from '~/components/StatusBar/CardCounter/CardCounter';
+import { PhraseInfo, Phrases } from '~/lib/Models/SentencesContext';
 import { useStatusBarInfo } from '~/lib/Models/StatusContext';
 import { sendPhrases } from '~/lib/SendCardPipeline/SendPhrasePipeline';
 
 
 interface StatusBarImports {
     count:Function,
-    phrases:Function
+    setCount:Function,
+    phrases:Function,
+    setSelectedPhrases:Function
 
 }
 
@@ -14,9 +17,19 @@ export const StatusBar: Component<StatusBarImports> = (props) => {
 
   const { StatusContext, setStatusContext} = useStatusBarInfo();
 
-    const send = () => {
+    const removeId = (id:number) => {
         console.log(props.phrases())
-        sendPhrases(setStatusContext,props.phrases())
+        props.setSelectedPhrases({"phrases": (phrases:PhraseInfo[]) => {
+            phrases.filter(
+                (phrase) => phrase.id != id
+            )
+        }});
+        props.setCount((co:number) => co -1 );
+        console.log(props.phrases())
+    }
+
+    const send = () => {
+        sendPhrases(setStatusContext,props.phrases(), removeId)
     }
 
   return (
