@@ -1,14 +1,16 @@
+import { Phrases } from "../Models/SentencesContext";
 import { handleResponse } from "../StatusBarContextHelper";
 
-async function sendStoredMediaUrl(CardStore:any){
+async function sendStoredMediaUrl(url:string, fileName:string){
+    console.log(`URL : ${url}, FILENAME: ${fileName}`)
     const response = await fetch("http://127.0.0.1:8765", {
       method: "POST",
       body: JSON.stringify({
         action: "storeMediaFile",
         version: 6,
         params: {
-          filename: CardStore.TargetWord + ".mp3",
-          url: CardStore.Audio
+          filename: fileName + ".mp3",
+          url: url
         }
       })
     });
@@ -38,12 +40,54 @@ export async function sendImageToAnki(CardStore:any,setStatusContext:Function) {
 export async function sendAudioToAnki(CardStore:any,setStatusContext:Function){    
   let result;
   if(CardStore.Audio.startsWith("http") || CardStore.Audio.startsWith("https")){
-    result = await sendStoredMediaUrl(CardStore);
+    result = await sendStoredMediaUrl(CardStore.Audio,CardStore.TargetWord);
   } else {
     result = await sendStoredMediaData(CardStore,true);
   }
   handleResponse(result,'Audio',setStatusContext);
   return result.error ? false : true;
+}
+
+
+export async function sendAudiosToAnki(phrases:Phrases,setStatusContext:Function){    
+  for(const data of phrases.phrases){
+    const result = await sendStoredMediaUrl(data.audioUrl,data.id+"");
+    if(result.error){
+        handleResponse(result,'Audio',setStatusContext);
+        return false
+    }
+  }
+  return true;
+}
+
+export async function sendCardsToAnki(phrases:Phrases, setStatusContext:Function){
+  for(const data of phrases.phrases){
+    const response = await fetch("http://127.0.0.1:8765", {
+      method: "POST",
+      body: JSON.stringify({
+        action: "addNote",
+        version: 6,
+        params: {
+          note: {
+            deckName: String("SentenceDeck"),
+            modelName: "SentenceCard",
+            fields: {
+              Audio: `[sound:${data.id}.mp3]` || "",
+              English_Sentences: String(data.SentenceEnlgish.join("\n<br />") || ""),
+              Spanish_Sentence: String(data.SentenceSpanish || "")
+            }
+          }
+        }
+      })
+    });
+      const result = await response.json();
+      if(result.error){
+        handleResponse(result,'Card',setStatusContext);
+        return false
+      }
+  }
+  return  true;
+
 }
 
 export async function sendCardToAnki(CardStore:any,setStatusContext:Function){

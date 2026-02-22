@@ -1,13 +1,22 @@
-import { For } from "solid-js";
+import { Component, For, Setter } from "solid-js";
 import { CardPhrase } from "./CardPhrase/CardPhrase";
 import { CardTop } from "./CardTop/CardTop";
-import { useSentenceContext } from "~/lib/Models/SentencesContext";
+import { Phrases, useSentenceContext } from "~/lib/Models/SentencesContext";
+import { useStatusBarInfo } from "~/lib/Models/StatusContext";
+import LoadingBar from "~/components/LoadingBar/LoadingBar";
 
 
+interface PhrasesMainImports {
+  setSelectedWords:Setter<Phrases>,
+  incCount:Function
+}
 
-export default function PhrasesMain() {
-const { SentenceContext} = useSentenceContext();
-    
+export const PhrasesMain: Component<PhrasesMainImports> = (props) => {
+
+  const { StatusContext} = useStatusBarInfo();
+
+  const { SentenceContext} = useSentenceContext();
+      
   return (
     <main>
       <section class="main-wrapper">
@@ -15,12 +24,13 @@ const { SentenceContext} = useSentenceContext();
         <div style={"overflow-y:auto;max-height:550px"}>
             <For each={SentenceContext.phrases}>  
             {(item) => (
-                <CardPhrase SentenceEnglish={item.SentenceEnlgish} SentenceSpanish={item.SentenceSpanish} audioUrl={item.audioUrl} />
+                <CardPhrase phrase={item}
+                setSelectedWords={props.setSelectedWords} incCount={props.incCount} />
             )}
             </For>
         </div>
       </section>
-
+      <LoadingBar status={[StatusContext.CheckRequest,StatusContext.SendImage,StatusContext.SendAudio,StatusContext.SendCard]} />
     </main>
   );
 }

@@ -1,12 +1,11 @@
 import { Component, For } from "solid-js";
 import './CardPhrase.css'
+import { PhraseInfo, Phrases } from "~/lib/Models/SentencesContext";
 interface CardPhraseImports {
-    SentenceEnglish:string[],
-    SentenceSpanish:string,
-    audioUrl:string
+    phrase:PhraseInfo,
+    setSelectedWords:Function,
+    incCount:Function
 }
-
-
 
 export const CardPhrase: Component<CardPhraseImports> = (props) => {
 
@@ -20,10 +19,10 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
                         <circle cx="200" cy="250" r="40" fill="#c60b1e" opacity="0.8"/>
                     </svg>
 
-                    {props.SentenceSpanish}</span>
+                    {props.phrase.SentenceSpanish}</span>
             </div>
             <div class="words-group">
-                <For each={props.SentenceEnglish}>
+                <For each={props.phrase.SentenceEnlgish}>
                 {(item) => (
                 <div style={"display:flex;gap:15px;min-width:200px; padding-left:45px"}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30">
@@ -43,7 +42,14 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
             </div>
             <div class="buttonGroup">
                 <button class="action-btn play">play</button>
-                <button class="action-btn add">+</button>
+                <button class="action-btn add" onClick={() => {
+                        props.setSelectedWords( (items:Phrases) => {
+                            return {"phrases": [...items.phrases, props.phrase]}
+                        })
+                        props.incCount()
+                        }}>
+                    +
+                </button>
             </div>
         </div>
   );

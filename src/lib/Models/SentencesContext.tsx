@@ -9,7 +9,8 @@ export interface Phrases {
 export interface PhraseInfo{
     SentenceEnlgish:string[],
     SentenceSpanish:string, 
-    audioUrl:string
+    audioUrl:string,
+    id:number
 }
 
 export interface TatoebaReply{
