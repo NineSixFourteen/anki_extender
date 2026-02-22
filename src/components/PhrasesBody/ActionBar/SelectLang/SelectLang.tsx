@@ -4,7 +4,8 @@ import { createPersistentStore } from '~/lib/Storage';
 import './SelectLang.css'
 
 interface SelectLangImports {
-
+  lang:Function,
+  setLang:Function,
 }
 
 export const SelectLang: Component<SelectLangImports> = (props) => {
@@ -12,8 +13,8 @@ export const SelectLang: Component<SelectLangImports> = (props) => {
   return (
     <div class='inputLabel'>
         <label> Select Language: </label>
-        <select class="toolbar-select">
-            <option value={"sap"}>Spanish</option>
+        <select value={props.lang()} onChange={(e) => props.setLang(e.currentTarget.value)} class="toolbar-select">
+            <option value={"spa"}>Spanish</option>
             <option value={"eng"}>English</option>
         </select>
     </div>

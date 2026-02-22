@@ -25,7 +25,7 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
             <div class="words-group">
                 <For each={props.SentenceEnglish}>
                 {(item) => (
-                <div style={"display:flex;gap:15px;min-width:200px"}>
+                <div style={"display:flex;gap:15px;min-width:200px; padding-left:45px"}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30">
                         <clipPath id="s">
                             <path d="M0,0 v30 h60 v-30 z"/>
