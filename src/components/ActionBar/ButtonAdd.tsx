@@ -70,7 +70,7 @@ export const ButtonAdd: Component<ButtonAddImports> = (props) => {
                         </Show>
                     </div>
                     <DropdownMenu.Trigger class="btn-arrow btn-green">
-                    <ChevronDown size={14} strokeWidth={3} />
+                        <ChevronDown size={14} strokeWidth={3} />
                     </DropdownMenu.Trigger>
                 </div>
 

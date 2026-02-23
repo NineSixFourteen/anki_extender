@@ -24,7 +24,6 @@ export const SelectDelim: Component<SelectDelimImports> = (props) => {
             </select>
             <Show when={props.selectedDelim() == "Custom:"}>
                 <input class="delimText" placeholder="Enter Delimiter"  type="text"  >
-                
                 </input>
             </Show>
         </>

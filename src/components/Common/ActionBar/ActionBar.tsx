@@ -19,8 +19,6 @@ export const ActionBar: Component<ActionBarImports> = (props) => {
                 {(element) => element}
             </For>
           </div>
-
-
         </div>
       </div>
     </div>

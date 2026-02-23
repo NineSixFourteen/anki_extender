@@ -1,6 +1,6 @@
 import { createSignal, Show, type Component } from "solid-js";
 import './CSS/Modal.css'
-import { SelectDelim } from "./SelectDelim";
+import { GenericSelect } from "../Common/GenericSelect/GenericSelect";
 
 interface ModalFileImports {
     isModalOpen: Function,
@@ -14,7 +14,7 @@ interface ModalFileImports {
 const ModalFile: Component<ModalFileImports> = (props) => {
   const [text, setText] = createSignal("");
   const [isDragging, setIsDragging] = createSignal(false);
-    const [selectedDelim, setSelectedDelim] = createSignal(",");
+   const [selectedDelim, setSelectedDelim] = createSignal(",");
 
     function loadWords(){
       const words = GetWords();
@@ -129,7 +129,17 @@ const ModalFile: Component<ModalFileImports> = (props) => {
             {/* Bottom Button Row */}
             <div class="modal-actions">
                 <div class="leftSide">
-                    <SelectDelim selectedDelim={selectedDelim} setSelectedDelim={setSelectedDelim} />
+                    <GenericSelect label="Delimiter:" value={selectedDelim} setValue={setSelectedDelim} options={[
+                        <option value=",">Comma: ,</option>,
+                        <option value="|">Pipe/OR: |,</option>,
+                        <option value="&">AND: &</option>,
+                        <option value=".">Dot: .</option>,
+                        <option value="%">REM: %</option>,
+                        <option value="*">MUL: *</option>,
+                        <option value=":">Colon: :</option>,
+                        <option value=";">SemiColon: ;</option>,
+                        <option value="Custom:">Custom: </option>,
+                    ]} />
                 </div>
               <button class="btn-secondary" onClick={handleClose}>
                 Cancel

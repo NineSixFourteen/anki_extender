@@ -1,6 +1,6 @@
 import {Component, createSignal, For, Show } from "solid-js";
 import './CSS/Modal.css'
-import { SelectDelim } from "./SelectDelim";
+import { GenericSelect } from "../Common/GenericSelect/GenericSelect";
 
 interface ModalInputImports {
     isModalOpen: Function,
@@ -32,7 +32,17 @@ export const ModalInput: Component<ModalInputImports> = (props) => {
             />
             <div class="modal-actions">
               <div class="leftSide">
-                <SelectDelim selectedDelim={selectedDelim} setSelectedDelim={setSelectedDelim} />
+                <GenericSelect label="Delimiter:" value={selectedDelim} setValue={setSelectedDelim} options={[
+                    <option value=",">Comma: ,</option>,
+                    <option value="|">Pipe/OR: |,</option>,
+                    <option value="&">AND: &</option>,
+                    <option value=".">Dot: .</option>,
+                    <option value="%">REM: %</option>,
+                    <option value="*">MUL: *</option>,
+                    <option value=":">Colon: :</option>,
+                    <option value=";">SemiColon: ;</option>,
+                    <option value="Custom:">Custom: </option>,
+                ]} />
               </div>
               <button class="btn-secondary" onClick={() => props.setIsModalOpen(false)}>Cancel</button>
               <button class="btn-main btn-green" onClick={() => {

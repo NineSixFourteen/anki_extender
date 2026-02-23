@@ -3,7 +3,6 @@ import {Component, For, Show } from "solid-js";
 interface SelectDeckImports {
     decks: Function,
     setCardStore: Function
-
 }
 
 export const SelectDeck: Component<SelectDeckImports> = (props) => {

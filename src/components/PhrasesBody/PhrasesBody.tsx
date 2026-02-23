@@ -1,12 +1,9 @@
 import { createSignal, For } from "solid-js";
 import './PhrasesBody.css'
-import ActionBar from "./ActionBar/ActionBar";
 import { StatusBar } from "./StatusBar/StatusBar";
-import LoadingBar from "../LoadingBar/LoadingBar";
-import { SentenceProvider, Phrases, useSentenceContext } from "~/lib/Models/SentencesContext";
-import { StatusProvider, useStatusBarInfo } from "~/lib/Models/StatusContext";
-import { createStore } from "solid-js/store";
+import {Phrases, useSentenceContext } from "~/lib/Models/SentencesContext";
 import { PhrasesMain } from "./PhrasesMain/PhrasesMain";
+import { ActionBar2 } from "./ActionBar/ActionBar";
 
 export default function PhrasesBody() {
 
@@ -25,7 +22,7 @@ export default function PhrasesBody() {
 
   return (
     <main class="pb-24">
-      <ActionBar setPage={setPage} />
+      <ActionBar2 setPage={setPage} />
       <PhrasesMain setSelectedWords={setSelectedPhrases} displayList={displayList} pageNum={pageNum}/>
 
       <StatusBar selectedPhrases={selectedPhrases}  setSelectedPhrases={setSelectedPhrases} />

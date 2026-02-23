@@ -8,6 +8,7 @@ import { useSentenceContext } from '~/lib/Models/SentencesContext';
 import { convertToPhrase } from '~/lib/SendCardPipeline/PhreaseHelper';
 import { ActionBar } from '~/components/Common/ActionBar/ActionBar';
 import { ButtonGroup } from './ButtonGroup/ButtonGroup';
+import { GenericSelect } from '~/components/Common/GenericSelect/GenericSelect';
 
 
 interface ActionBar2Imports {
@@ -20,7 +21,7 @@ export const ActionBar2: Component<ActionBar2Imports> = (props) => {
     const [lang,setLang] = createSignal("spa");
     const [wordCount,setWordCount] = createSignal("-5");
 
-    const { SentenceContext, setSentenceContext} = useSentenceContext();
+    const { setSentenceContext} = useSentenceContext();
 
     const [numSel, setNumSel] = createSignal(0);
 
@@ -35,9 +36,18 @@ export const ActionBar2: Component<ActionBar2Imports> = (props) => {
     <ActionBar
       leftSide={[
         <InputWord word={word} setWord={setWord} />,
-        <SelectLang lang={lang} setLang={setLang}/>,
-        <SelectWordCount wordCount={wordCount} setWordCount={setWordCount} />
-    ]}
+        <GenericSelect label='Select Language: ' value={lang} setValue={setLang} options={[
+            <option value={"spa"}>Spanish</option>,
+            <option value={"eng"}>English</option>
+        ]}/>,
+        <GenericSelect label='Select Word Count: ' value={wordCount} setValue={setWordCount} options={[
+            <option value={"-5"}>{"<5"}</option>,
+            <option value={"5-"}>{">5"}</option>,
+            <option value={"5-10"}>{"5-10"}</option>,
+            <option value={"-10"}>{"<10"}</option>,
+            <option value={"10-"}>{"10>"}</option>
+        ]} />
+        ]}
       rightSide={[
         <ButtonGroup setPage={props.setPage} sendRequest={sendRequest} numSel={numSel} setNumSel={setNumSel}  /> 
     ]} />

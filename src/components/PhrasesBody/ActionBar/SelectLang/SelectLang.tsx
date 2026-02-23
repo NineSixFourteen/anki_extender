@@ -1,6 +1,4 @@
-import { Component, createResource, createSignal} from 'solid-js';
-import { useCards } from '~/lib/Models/CardContext';
-import { createPersistentStore } from '~/lib/Storage';
+import { Component} from 'solid-js';
 import './SelectLang.css'
 
 interface SelectLangImports {
