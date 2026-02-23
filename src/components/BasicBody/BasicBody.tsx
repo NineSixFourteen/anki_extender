@@ -4,11 +4,10 @@ import { ActionBar2 } from '~/components/ActionBar/ActionBar'
 import { HelpSection } from "~/components/HelpSection/HelpSection";
 import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
 import { createSignal } from "solid-js";
-import { CardProvider, useCards } from "~/lib/Models/CardContext";
-import { StatusProvider, useStatusBarInfo } from "~/lib/Models/StatusContext";
-import LoadingBar from "../LoadingBar/LoadingBar";
+import { useCards } from "~/lib/Models/CardContext";
+import { useStatusBarInfo } from "~/lib/Models/StatusContext";
 import { StatusBar } from "../Common/StatusBar/StatusBar";
-import CardCoutner from "../StatusBar/CardCounter/CardCounter";
+import CardCoutner from "../Common/StatusBar/CardCounter/CardCounter";
 import { PageBody } from "../Common/PageBody/PageBody";
 
 export default function BasicBody() {

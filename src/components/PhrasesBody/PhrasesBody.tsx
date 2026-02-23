@@ -4,7 +4,7 @@ import {Phrases, useSentenceContext } from "~/lib/Models/SentencesContext";
 import { PhrasesMain } from "./PhrasesMain/PhrasesMain";
 import { ActionBar2 } from "./ActionBar/ActionBar";
 import { StatusBar } from "../Common/StatusBar/StatusBar";
-import CardCoutner from "../StatusBar/CardCounter/CardCounter";
+import CardCoutner from "../Common/StatusBar/CardCounter/CardCounter";
 import { useStatusBarInfo } from "~/lib/Models/StatusContext";
 import { sendPhrases } from '~/lib/SendCardPipeline/SendPhrasePipeline';
 import { PageBody } from "../Common/PageBody/PageBody";
