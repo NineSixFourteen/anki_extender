@@ -1,9 +1,5 @@
             
-import { DropdownMenu } from "@kobalte/core/dropdown-menu";
-import { Accessor, Component, createSignal, For, Show } from "solid-js";
-import { ChevronDown } from "lucide-solid";
-import { TrashIcon } from "../Common/Icons/ActionBar";
-import { DropDownButton } from "../Common/Buttons/DropDownButton";
+import { Component, Show } from "solid-js";
 
 interface PopupTextImports {
     isVisible: Function,

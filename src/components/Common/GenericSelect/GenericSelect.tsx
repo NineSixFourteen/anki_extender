@@ -1,4 +1,5 @@
 import {Component, For, JSXElement, Show } from "solid-js";
+import './Select.css'
 
 interface GenericSelectImports {
     label:string,

@@ -1,6 +1,6 @@
-import { ImageSection } from "~/components/ImageSection/ImageSection";
-import { WordSection } from "~/components/WordSection/WordSection";
-import { HelpSection } from "~/components/HelpSection/HelpSection";
+import { ImageSection } from "~/components/BasicBody/ImageSection/ImageSection";
+import { WordSection } from "~/components/BasicBody/WordSection/WordSection";
+import { HelpSection } from "~/components/BasicBody/HelpSection/HelpSection";
 import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
 import { createResource, createSignal, For } from "solid-js";
 import { useCards } from "~/lib/Models/CardContext";
@@ -12,7 +12,7 @@ import { GenericSelect } from "../Common/GenericSelect/GenericSelect";
 import ActionBar from "../Common/ActionBar/ActionBar";
 import { fetchAnkiDecks } from "~/lib/AnkiFetch";
 import { createPersistentStore } from "~/lib/Storage";
-import { ButtonGroup } from "../ActionBar/ButtonGroup";
+import { ButtonGroup } from "./ActionBar/ButtonGroup";
 
 export default function BasicBody() {
   const [targetWord, setTargetWord] = createSignal<string>("");

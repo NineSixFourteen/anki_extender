@@ -1,17 +1,14 @@
             
 import { DropdownMenu } from "@kobalte/core/dropdown-menu";
-import { Accessor, Component, createSignal, For, Show } from "solid-js";
-import { ChevronDown, PlusIcon } from "lucide-solid";
-import { TickIcon, TrashIcon } from "../Common/Icons/ActionBar";
-import { DropDownButton } from "../Common/Buttons/DropDownButton";
+import { Component, createSignal, For, Show } from "solid-js";
+import { PlusIcon } from "lucide-solid";
+import { TickIcon, TrashIcon } from "../../Common/Icons/ActionBar";
+import { DropDownButton } from "../../Common/Buttons/DropDownButton";
 import { ModalInput } from "./ModalInput";
 import ModalFile from "./ModalFile";
 import { PopupText } from "./PopupText";
 
-import './CSS/Button.css'
-import './CSS/Dropdown.css'
-import './CSS/Select.css'
-import './CSS/ActionBar.css'
+import './Modal.css'
 
 interface ButtonGroupImports {
     setWordStore: Function,

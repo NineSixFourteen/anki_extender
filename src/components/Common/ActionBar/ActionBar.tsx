@@ -1,4 +1,5 @@
 import { Component, For, JSX} from 'solid-js';
+import './ActionBar.css'
 
 interface ActionBarImports {
     leftSide: JSX.Element[],

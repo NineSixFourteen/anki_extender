@@ -1,6 +1,5 @@
 import {Component, createSignal, For, Show } from "solid-js";
-import './CSS/Modal.css'
-import { GenericSelect } from "../Common/GenericSelect/GenericSelect";
+import { GenericSelect } from "../../Common/GenericSelect/GenericSelect";
 
 interface ModalInputImports {
     isModalOpen: Function,

@@ -2,6 +2,7 @@
 import { DropdownMenu } from "@kobalte/core/dropdown-menu";
 import { Component, createSignal, For, JSXElement, Show} from "solid-js";
 import { ChevronDown } from "lucide-solid";
+import './Button.css'
 
 interface DropDownButtonImports {
     text:JSXElement,

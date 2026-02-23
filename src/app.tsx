@@ -1,7 +1,7 @@
 import { Route, Router } from "@solidjs/router";
 import { Suspense } from "solid-js";
 import "./app.css";
-import { Navbar } from "./components/Navbar/Navbar";
+import { Navbar } from "./components/Common/Navbar/Navbar";
 import Basic from "./routes/basic";
 import Home from "./routes";
 import Phrases from "./routes/phrases";

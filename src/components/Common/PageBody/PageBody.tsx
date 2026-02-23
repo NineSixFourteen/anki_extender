@@ -1,5 +1,5 @@
 import { Component, For, JSXElement } from "solid-js";
-import LoadingBar from "~/components/LoadingBar/LoadingBar";
+import LoadingBar from "~/components/Common/LoadingBar/LoadingBar";
 
 interface PageBodyImports {
     actionBar:JSXElement,
