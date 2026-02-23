@@ -8,8 +8,6 @@ import { ModalInput } from "./ModalInput";
 import ModalFile from "./ModalFile";
 import { PopupText } from "./PopupText";
 
-import './Modal.css'
-
 interface ButtonGroupImports {
     setWordStore: Function,
     wordStore: string[], 

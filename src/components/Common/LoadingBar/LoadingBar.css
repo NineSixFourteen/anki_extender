@@ -22,35 +22,3 @@
     height: 100%;
     transition: background-color 0.3s ease;
 }
-
-.main-footer {
-    padding: 20px 40px;
-    border-top: 1px solid #222;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.footer-content span {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-}
-
-/* Mock of the green button from your second image */
-.send-btn-mock {
-    position: absolute;
-    right: 0;
-    background: #22c55e;
-    color: #000;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}

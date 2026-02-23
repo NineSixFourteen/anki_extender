@@ -47,17 +47,11 @@
 .btn-yellow { background-color: #eab308; color: #422006; font-style: italic; }
 .btn-yellow:hover { background-color: #facc15; }
 
-.btn-grey { background-color: #4b5563; color: white; opacity: 0.5; }
-
 .button-group{
   display: flex;
   gap: 8px
 }
 
-.relative-container {
-  position: relative;
-  display: inline-block; /* Keeps the container the same size as the button */
-}
 
 .input-popup {
   position: absolute;
@@ -96,7 +90,6 @@
 }
 
 
-/* Positioning the actual dropdown list */
 .dropdown-content {
   background-color: #1a1a1a;
   border: 1px solid rgba(255, 255, 255, 0.1);
