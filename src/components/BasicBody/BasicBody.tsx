@@ -1,17 +1,17 @@
 import { ImageSection } from "~/components/BasicBody/ImageSection/ImageSection";
 import { WordSection } from "~/components/BasicBody/WordSection/WordSection";
 import { HelpSection } from "~/components/BasicBody/HelpSection/HelpSection";
-import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
+import { sendCard } from "~/components/BasicBody/lib/SendCardPipeline";
 import { createResource, createSignal, For } from "solid-js";
-import { useCards } from "~/lib/Models/CardContext";
-import { useStatusBarInfo } from "~/lib/Models/StatusContext";
+import { useCards } from "./lib/CardContext"
+import { useStatusBarInfo } from "~/components/Common/LoadingBar/lib/StatusContext";
 import { StatusBar } from "../Common/StatusBar/StatusBar";
 import CardCoutner from "../Common/StatusBar/CardCounter/CardCounter";
 import { PageBody } from "../Common/PageBody/PageBody";
 import { GenericSelect } from "../Common/GenericSelect/GenericSelect";
 import ActionBar from "../Common/ActionBar/ActionBar";
-import { fetchAnkiDecks } from "~/lib/AnkiFetch";
-import { createPersistentStore } from "~/lib/Storage";
+import { fetchAnkiDecks } from "~/lib/Fetch/AnkiFetch";
+import { createPersistentStore } from "~/lib/Storage/Storage";
 import { ButtonGroup } from "./ActionBar/ButtonGroup";
 
 export default function BasicBody() {

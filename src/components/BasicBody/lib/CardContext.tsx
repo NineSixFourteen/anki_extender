@@ -1,15 +1,6 @@
 import { createStore, SetStoreFunction, unwrap } from "solid-js/store";
 import { createContext, createEffect, JSX, useContext } from "solid-js";
-
-export interface CardType {
-  Image: String ,  
-  FrontText: String, 
-  Audio: String, 
-  TargetWord: String, 
-  Hints: StupidString[],
-  English: String, 
-  Deck: String
-};
+import { CardType } from "./Models/CardModels";
 
 interface CardContextValue {
     CardStore: CardType,

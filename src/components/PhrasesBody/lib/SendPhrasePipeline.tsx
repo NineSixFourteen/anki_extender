@@ -1,6 +1,7 @@
-import { Phrases } from "../Models/SentencesContext";
-import { sendAudiosToAnki, sendCardsToAnki, sendCardToAnki } from "./SendHelper";
-import { updateStatus, resetStatusBar } from "../StatusBarContextHelper";
+import { Phrases } from "./models/Phrases";
+import { updateStatus, resetStatusBar } from "../../Common/LoadingBar/lib/StatusBarContextHelper";
+import { sendAudiosToAnki } from "~/lib/Send/AudioSend";
+import { sendCardsToAnki } from "~/lib/Send/CardSend";
 
 export async function sendPhrases(setStatusContext:Function, phrases:Phrases,removeId:Function) {
 

@@ -1,6 +1,6 @@
 import { Component, createSignal, For, onMount, Show } from 'solid-js';
 import { createStore } from 'solid-js/store'; 
-import { useCards } from '~/lib/Models/CardContext';
+import { useCards } from '../lib/CardContext';
 import { HelpSearch } from './HelpSearch/HelpSearch';
 import { HelpHints } from './HelpHints/HelpHints';
 import { HelpText } from './HelpText/HelpText';

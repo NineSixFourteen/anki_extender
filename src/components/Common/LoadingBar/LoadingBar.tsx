@@ -1,6 +1,6 @@
 import { For } from "solid-js";
 import './LoadingBar.css'
-import { useStatusBarInfo } from "~/lib/Models/StatusContext";
+import { useStatusBarInfo } from "./lib/StatusContext"
 
 
 interface LoadingBarProps {

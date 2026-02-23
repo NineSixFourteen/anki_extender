@@ -1,5 +1,5 @@
 import { Component, JSXElement, Show } from "solid-js";
-import { useStatusBarInfo } from "~/lib/Models/StatusContext";
+import { useStatusBarInfo } from "../LoadingBar/lib/StatusContext"
 import './StatusBar.css'
 
 interface StatusBarImports {

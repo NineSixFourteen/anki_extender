@@ -1,15 +1,16 @@
 import { createSignal, For } from "solid-js";
 import './PhrasesBody.css'
-import {Phrases, useSentenceContext } from "~/lib/Models/SentencesContext";
+import {Phrases } from "./lib/models/Phrases";
+import { useSentenceContext } from "./lib/models/SentencesContext";
 import { PhrasesMain } from "./PhrasesMain/PhrasesMain";
 import { StatusBar } from "../Common/StatusBar/StatusBar";
 import CardCoutner from "../Common/StatusBar/CardCounter/CardCounter";
-import { useStatusBarInfo } from "~/lib/Models/StatusContext";
-import { sendPhrases } from '~/lib/SendCardPipeline/SendPhrasePipeline';
+import { useStatusBarInfo } from "~/components/Common/LoadingBar/lib/StatusContext"
+import { sendPhrases } from '~/components/PhrasesBody/lib/SendPhrasePipeline';
 import { PageBody } from "../Common/PageBody/PageBody";
 import ActionBar from "../Common/ActionBar/ActionBar";
-import { fetchSentences } from "~/lib/Tatoeba/TatobaFetch";
-import { convertToPhrase } from "~/lib/SendCardPipeline/PhreaseHelper";
+import { fetchSentences } from "~/lib/Fetch/TatobaFetch";
+import { convertToPhrase } from "~/components/PhrasesBody/lib/PhraseHelper";
 import InputWord from "./ActionBar/InputWord/InputWord";
 import { GenericSelect } from "../Common/GenericSelect/GenericSelect";
 import { ButtonGroup } from "./ActionBar/ButtonGroup/ButtonGroup";

@@ -1,6 +1,6 @@
-import { SentenceProvider } from "~/lib/Models/SentencesContext";
+import { SentenceProvider } from "~/components/PhrasesBody/lib/models/SentencesContext";
 import PhrasesBody from "./PhrasesBody";
-import { StatusProvider } from "~/lib/Models/StatusContext";
+import { StatusProvider } from "../Common/LoadingBar/lib/StatusContext";
 
 export default function PhrasesTop() {
 

@@ -2,7 +2,7 @@ import { createSignal, createMemo, Show, Component, onMount } from "solid-js";
 import { WordSearch } from "./WordSearch/WordSearch";
 import { AudioZone } from "./AudioZone/AudioZone";
 import { WordTarget } from "./WordTarget/WordTarget";
-import { useCards } from "~/lib/Models/CardContext";
+import { useCards } from "../lib/CardContext";
 
 interface WordSectionImports {
     audioSearch: Function,

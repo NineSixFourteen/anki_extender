@@ -1,7 +1,7 @@
 import { Component, createSignal, For, Setter } from "solid-js";
 import { CardPhrase } from "./CardPhrase/CardPhrase";
 import { CardTop } from "./CardTop/CardTop";
-import { Phrases, useSentenceContext } from "~/lib/Models/SentencesContext";
+import { Phrases, useSentenceContext } from "~/components/PhrasesBody/lib/models/SentencesContext";
 
 interface PhrasesMainImports {
   setSelectedWords:Setter<Phrases>,

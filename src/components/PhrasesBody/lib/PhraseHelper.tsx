@@ -1,4 +1,6 @@
-import { PhraseInfo, SentenceData, TatoebaReply } from "../Models/SentencesContext";
+import { PhraseInfo } from "./models/PhraseInfo";
+import { SentenceData } from "./models/SentenceData";
+import { TatoebaReply } from "./models/TatoebaReply";
 
 export function convertToPhrase(data:any[]){
     return secondMap(mapToReply(data));
@@ -34,7 +36,8 @@ const secondMap = (reply:TatoebaReply) => {
                 SentenceEnlgish:entry.translateions.map((e) => e.text),
                 SentenceSpanish:entry.text,
                 id:entry.id,
-                audioUrl: getUrl(entry.id)
+                audioUrl: getUrl(entry.id),
+                selected:false
             }
             return name; 
         }

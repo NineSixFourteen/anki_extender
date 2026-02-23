@@ -1,5 +1,7 @@
-import { sendAudioToAnki, sendCardToAnki, sendImageToAnki } from "./SendHelper";
-import { updateStatus, resetStatusBar } from "../StatusBarContextHelper";
+import { sendImageToAnki } from "~/lib/Send/ImageSend";
+import { updateStatus, resetStatusBar } from "../../Common/LoadingBar/lib/StatusBarContextHelper";
+import { sendAudioToAnki } from "~/lib/Send/AudioSend";
+import { sendCardToAnki } from "~/lib/Send/CardSend";
 
 function checkForMissingFields(CardStore:any, setStatusContext:Function){
   let missingFields = [];

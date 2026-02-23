@@ -1,38 +1,7 @@
 import { createContext, JSX, useContext } from "solid-js"
 import { createStore, SetStoreFunction } from "solid-js/store"
+import { Phrases } from "./Phrases";
 
-
-export interface Phrases {
-    phrases: PhraseInfo[]
-}
-
-export interface PhraseInfo{
-    SentenceEnlgish:string[],
-    SentenceSpanish:string, 
-    audioUrl:string,
-    id:number,
-    selected:boolean
-}
-
-export interface TatoebaReply{
-    sentencs: SentenceData[]
-}
-
-export interface SentenceData {
-    id: number,
-    audio: AudioData[],
-    lang: string,
-    text: string,
-    translateions: TranslationData[]
-}
-
-export interface AudioData {
-    id:string
-}
-
-export interface TranslationData {
-    text:string
-}
 
 interface PhrasesValue {
     SentenceContext: Phrases,
@@ -40,7 +9,6 @@ interface PhrasesValue {
 }
 
 const SentenceContext2 = createContext<PhrasesValue>({} as PhrasesValue);
-
 
 export function SentenceProvider(props: { children: JSX.Element }) {
 

@@ -1,3 +1,4 @@
+
 interface StupidString{
     text: string | number | string[] | undefined
 }

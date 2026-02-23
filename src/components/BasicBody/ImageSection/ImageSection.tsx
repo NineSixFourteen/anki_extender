@@ -1,8 +1,8 @@
 import { Component, createSignal, onMount, Show } from "solid-js";
-import { useCards } from "~/lib/Models/CardContext";
 import { ImageSearch } from "./ImageSearch/ImageSearch";
 import { ImageZone } from "./ImageZone/ImageZone";
 import { ImageText } from "./ImageText/ImageText";
+import { useCards } from "../lib/CardContext";
 
 
 interface ImageSectionImports {

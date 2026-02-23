@@ -1,6 +1,6 @@
 import { SearchIcon } from 'lucide-solid';
 import { Component, createSignal, For} from 'solid-js';
-import { useSentenceContext } from '~/lib/Models/SentencesContext';
+import { useSentenceContext } from '~/components/PhrasesBody/lib/models/SentencesContext';
 
 
 interface ButtonGroupImports {
