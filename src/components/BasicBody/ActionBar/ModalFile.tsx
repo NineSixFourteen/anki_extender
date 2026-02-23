@@ -1,5 +1,6 @@
 import { createSignal, Show, type Component } from "solid-js";
 import { GenericSelect } from "../../Common/GenericSelect/GenericSelect";
+import { GenericModal } from "~/components/Common/GenericModal/GenericModal";
 
 interface ModalFileImports {
     isModalOpen: Function,
@@ -7,7 +8,6 @@ interface ModalFileImports {
     wordStore: string[],
     setWordStore: Function,
     setCurrentWord: Function,
-
 }
 
 const ModalFile: Component<ModalFileImports> = (props) => {
@@ -74,90 +74,82 @@ const ModalFile: Component<ModalFileImports> = (props) => {
   let fileInputRef: HTMLInputElement | undefined;
 
   return (
-    <>
-
-      <Show when={props.isModalOpen()}>
-        {/* Backdrop overlay */}
-        <div class="modal-overlay" onClick={handleClose}>
-          
-          {/* Modal Container */}
-          <div class="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2 class="modal-title">Import Text File</h2>
-            
-            <input 
-              type="file" 
-              ref={fileInputRef} 
-              style="display: none" 
-              accept=".txt" 
-              onChange={handleFileSelect}
-            />
-
-            <div 
-              class="drop-zone"
-              classList={{ 'dragging': isDragging() }}
-              onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-              onDragLeave={() => setIsDragging(false)}
-              onDrop={handleDrop}
-            >
-              <Show 
-                when={text().length > 0} 
-                fallback={
-                  <div class="drop-prompt">
-                    <p>Drop a .txt file here</p>
-                    <button 
-                      class="btn-secondary" 
-                      style="margin-top: 10px;"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        fileInputRef?.click();
-                    }}
-                    >
-                      Or select file
-                    </button>
-                  </div>
-                }
-              >
-                <textarea 
-                  class="modal-textarea"
-                  value={text()} 
-                  onInput={(e) => setText(e.currentTarget.value)} 
-                />
-              </Show>
-            </div>
-
-            {/* Bottom Button Row */}
-            <div class="modal-actions">
-                <div class="leftSide">
-                    <GenericSelect label="Delimiter:" value={selectedDelim} setValue={setSelectedDelim} options={[
-                        <option value=",">Comma: ,</option>,
-                        <option value="|">Pipe/OR: |,</option>,
-                        <option value="&">AND: &</option>,
-                        <option value=".">Dot: .</option>,
-                        <option value="%">REM: %</option>,
-                        <option value="*">MUL: *</option>,
-                        <option value=":">Colon: :</option>,
-                        <option value=";">SemiColon: ;</option>,
-                        <option value="Custom:">Custom: </option>,
-                    ]} />
+    <GenericModal
+        isModalOpen={props.isModalOpen}
+        setIsModalOpen={props.setIsModalOpen}
+        wordStore={props.wordStore}
+        setWordStore={props.setWordStore}
+        setCurrentWord={props.setCurrentWord}
+        title={<h2 class="modal-title">Import Text File</h2>}
+        body={[
+          <input 
+            type="file" 
+            ref={fileInputRef} 
+            style="display: none" 
+            accept=".txt" 
+            onChange={handleFileSelect}
+          />,
+          <div 
+            class="drop-zone"
+            classList={{ 'dragging': isDragging() }}
+            onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+            onDragLeave={() => setIsDragging(false)}
+            onDrop={handleDrop}
+          >
+            <Show 
+              when={text().length > 0} 
+              fallback={
+                <div class="drop-prompt">
+                  <p>Drop a .txt file here</p>
+                  <button 
+                    class="btn-secondary" 
+                    style="margin-top: 10px;"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      fileInputRef?.click();
+                  }}
+                  >
+                    Or select file
+                  </button>
                 </div>
-              <button class="btn-secondary" onClick={handleClose}>
-                Cancel
-              </button>
-              <button 
-                class="btn-main btn-green" 
-                onClick={() => {
-                    loadWords()
-                  handleClose();
-                }}
-              >
-                Confirm & Load
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </Show>
-    </>
+              }
+            >
+              <textarea 
+                class="modal-textarea"
+                value={text()} 
+                onInput={(e) => setText(e.currentTarget.value)} 
+              />
+          </Show>
+        </div>,
+        ]}
+        actions={[
+          <div class="leftSide">
+            <GenericSelect label="Delimiter:" value={selectedDelim} setValue={setSelectedDelim} options={[
+                <option value=",">Comma: ,</option>,
+                <option value="|">Pipe/OR: |,</option>,
+                <option value="&">AND: &</option>,
+                <option value=".">Dot: .</option>,
+                <option value="%">REM: %</option>,
+                <option value="*">MUL: *</option>,
+                <option value=":">Colon: :</option>,
+                <option value=";">SemiColon: ;</option>,
+                <option value="Custom:">Custom: </option>,
+            ]} />
+        </div>,
+        <button class="btn-secondary" onClick={handleClose}>
+          Cancel
+        </button>,
+        <button 
+          class="btn-main btn-green" 
+          onClick={() => {
+              loadWords()
+            handleClose();
+          }}
+        >
+          Confirm & Load
+        </button>
+        ]}
+    />
   );
 };
 
