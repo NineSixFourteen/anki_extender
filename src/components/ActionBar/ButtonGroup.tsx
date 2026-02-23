@@ -19,7 +19,6 @@ interface ButtonGroupImports {
     setCurrentWord:Function,
     currentWord:Function,
     loadWord:Function
-
 }
 export const ButtonGroup: Component<ButtonGroupImports> = (props) => {
     const [isVisible, setIsVisible] = createSignal(false);
