@@ -11,11 +11,16 @@ import './CSS/ActionBar.css'
 import { createPersistentStore } from '~/lib/Storage';
 import ActionBar from '../Common/ActionBar/ActionBar';
 import { GenericSelect } from '../Common/GenericSelect/GenericSelect';
-
+import { DropDownButton } from '../Common/Buttons/DropDownButton';
+import { DropdownMenu } from '@kobalte/core';
+import { PlusIcon, TickIcon, TrashIcon } from '../Common/Icons/ActionBar';
+import { ModalInput } from './ModalInput';
+import ModalFile from './ModalFile';
+import { PopupText } from './PopupText';
+import { ButtonGroup } from './ButtonGroup';
 
 interface ActionBar2Imports {
     loadWord: Function,
-
 }
 
 export const ActionBar2: Component<ActionBar2Imports> = (props) => {
@@ -25,9 +30,13 @@ export const ActionBar2: Component<ActionBar2Imports> = (props) => {
   const [wordStore, setWordStore] = createPersistentStore<string[]>("store",[]);
   const [currentWord, setCurrentWord] = createSignal("");
 
+
+
   function updateDeck(value:string){
     setCardStore("Deck", value)
   }
+
+
 
   return (
     <ActionBar
@@ -46,11 +55,7 @@ export const ActionBar2: Component<ActionBar2Imports> = (props) => {
                   }
               </For>]
             }  />,
-            <div class='button-group'>
-              <ButtonAdd setCurrentWord={setCurrentWord} wordStore={wordStore} setWordStore={setWordStore} />
-              <ButtonPop wordStore={wordStore} setCurrentWord={setCurrentWord} setWordStore={setWordStore} />
-              <ButtonSet currentWord={currentWord} loadWord={props.loadWord} />
-            </div>
+            <ButtonGroup wordStore={wordStore} setWordStore={setWordStore} currentWord={currentWord} setCurrentWord={setCurrentWord} loadWord={props.loadWord} />
     ]} />
 
   );
