@@ -182,78 +182,40 @@ html, body {
   scrollbar-color: #333 #0a0a0a;
 }
 
-/* TODO FIX */
+/* Ensure body matches to prevent white flashes during load */
+body {
+  background-color: #0A0A0B; 
+  margin: 0;
+}
 
-.actionBar {
-  width: 100%;
-  background: #161616;
-  border-bottom: 1px solid #2a2a2a;
+#loading-overlay {
+  position: fixed;
+  inset: 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 15px 0;
-  height: 78px;
+  background-color: #0A0A0B;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
+  color: #e0e0e0;
+  font-family: 'JetBrains Mono', monospace; /* Matching your dev aesthetic */
 }
 
-.actionBarInner {
-  width: 90vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.05);
+  border-left-color: #3b82f6; /* Your brand blue */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-.rightSide {
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  border-radius: 8px;
-  gap: 6px;
-  margin-left: auto; /* Pushes to the right */
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.SelectWord label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: #666;
-  text-transform: uppercase;
-}
-
-.SelectDeck {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.SelectDeck label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: #666;
-  text-transform: uppercase;
-}
-
-.SelectDeck select {
-  background: #000;
-  color: #fff;
-  border: 1px solid #333;
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  outline: none;
-}
-
-.sendButton {
-  background: #22c55e; /* Vibrant Green */
-  color: #000;
-  border: none;
-  padding: 10px 25px;
-  font-weight: 800;
-  font-family: 'JetBrains Mono', monospace;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.sendButton:hover {
-  background: #16a34a;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }

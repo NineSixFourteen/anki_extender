@@ -61,11 +61,27 @@ export default function BasicBody() {
     setCardStore("Deck", value)
   }
 
+  const getDecks = () => {
+    if(decks){
+      return decks;
+    } else {
+      return () => "Default"
+    }
+  }
+
+  const getCurrentWord = () => {
+    if(currentWord){
+      return currentWord;
+    } else {
+      return () => "Press the + button to add a word"
+    }
+  }
+
   return (
     <PageBody 
       actionBar={
             <ActionBar
-              leftSide={[<GenericSelect label='Target Deck'value={decks || "Default"} setValue={updateDeck} options={[
+              leftSide={[<GenericSelect label='Target Deck'value={getDecks} setValue={updateDeck} options={[
                 <For each={decks()}>
                     {(deckName:string) => (
                     <option value={deckName}>{deckName}</option>
@@ -73,10 +89,10 @@ export default function BasicBody() {
                 </For>
               ]} />]}
               rightSide={[
-                    <GenericSelect label='Word List'  value={currentWord} setValue={setCurrentWord} options={[
+                    <GenericSelect label='Word List'  value={getCurrentWord} setValue={setCurrentWord} options={[
                       <For each={wordStore.length > 0 ? wordStore : ["Press the + button to add a word"] }>
                           {
-                              (word) => <option value={word}>{word}</option>
+                              (word) => (<option value={word}>{word}</option>)
                           }
                       </For>]
                     }  />,
