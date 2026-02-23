@@ -5,21 +5,21 @@ import { ButtonAdd } from './ButtonAdd';
 import { ButtonPop } from './ButtonPop';
 import { SelectDeck } from './SelectDeck';
 import { SelectWord } from './SelectWord';
-import { createStore } from 'solid-js/store'; 
 import { ButtonSet } from './ButtonSet';
 import './CSS/Button.css'
 import './CSS/Dropdown.css'
 import './CSS/Select.css'
 import './CSS/ActionBar.css'
 import { createPersistentStore } from '~/lib/Storage';
+import ActionBar from '../Common/ActionBar/ActionBar';
 
 
-interface ActionBarImports {
+interface ActionBar2Imports {
     loadWord: Function,
 
 }
 
-export const ActionBar: Component<ActionBarImports> = (props) => {
+export const ActionBar2: Component<ActionBar2Imports> = (props) => {
 
   const [decks] = createResource(fetchAnkiDecks);
   const {setCardStore} = useCards();
@@ -28,23 +28,16 @@ export const ActionBar: Component<ActionBarImports> = (props) => {
 
 
   return (
-    <div class="actionBar">
-      <div class="actionBarInner">
-        <div class="toolbar-container">
-          <SelectDeck decks={decks} setCardStore={setCardStore} />
-
-          <div class="rightSide">
-            <SelectWord wordStore={wordStore} currentWord={currentWord} setCurrentWord={setCurrentWord}  />
+    <ActionBar
+      leftSide={[<SelectDeck decks={decks} setCardStore={setCardStore} />]}
+      rightSide={[
+            <SelectWord wordStore={wordStore} currentWord={currentWord} setCurrentWord={setCurrentWord}  />,
             <div class='button-group'>
               <ButtonAdd setCurrentWord={setCurrentWord} wordStore={wordStore} setWordStore={setWordStore} />
               <ButtonPop wordStore={wordStore} setCurrentWord={setCurrentWord} setWordStore={setWordStore} />
               <ButtonSet currentWord={currentWord} loadWord={props.loadWord} />
-              <button class="btn-single btn-grey">---</button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    ]} />
 
   );
 };

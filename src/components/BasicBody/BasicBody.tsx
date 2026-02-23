@@ -1,6 +1,6 @@
 import { ImageSection } from "~/components/ImageSection/ImageSection";
 import { WordSection } from "~/components/WordSection/WordSection";
-import { ActionBar } from '~/components/ActionBar/ActionBar'
+import { ActionBar2 } from '~/components/ActionBar/ActionBar'
 import { HelpSection } from "~/components/HelpSection/HelpSection";
 import { StatusBar } from "~/components/StatusBar/StatusBar";
 import { createSignal } from "solid-js";
@@ -50,7 +50,7 @@ export default function BasicBody() {
 
   return (
     <main class="pb-24">
-        <ActionBar loadWord={loadWord}/>
+        <ActionBar2 loadWord={loadWord}/>
         <div class="main-wrapper">
             <div class="grid-container">
                 <ImageSection ref={(el:any) => (clearImage = el)} imageSearch={imageSearch} setImageSearch={setImageSearch}/>
