@@ -4,7 +4,7 @@ export const fetchSentences = query(async (languageCode:String, word:String,word
   "use server"; 
     try{
         const baseUrl = "https://api.tatoeba.org/v1/sentences";
-        const constOptions = "is_native=yes&has_audio=yes&trans%3Alang=eng&sort=relevance&include=transcriptions%2Caudios";
+        const constOptions = "has_audio=yes&trans%3Alang=eng&sort=relevance&include=transcriptions%2Caudios&limit=50";
         const fullUrl = `${baseUrl}?lang=${languageCode}&q=${word}&word_count=${wordCount}&${constOptions}`
         const response = await fetch(
             fullUrl,

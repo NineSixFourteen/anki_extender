@@ -43,19 +43,20 @@
     font-size: 1rem;
 }
 
-.check-btn {
-    background-color: #22c55e; /* Green from Image 1/2 */
-    border: none;
-    border-radius: 4px;
-    width: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #000;
+.send-btn {
+  background: #22c55e;
+  color: #052e16;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.1s, filter 0.2s;
 }
 
-.check-btn svg { width: 24px; height: 24px; }
+.send-btn svg { width: 24px; height: 24px; }
 
 .list-container {
     margin: 30px 0;

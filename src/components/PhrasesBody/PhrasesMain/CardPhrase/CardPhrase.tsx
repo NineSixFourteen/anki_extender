@@ -10,6 +10,11 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
 
     const [isSelected, setSelected] = createSignal(false);
 
+    const PlayAudioButton = (url:string) => {
+        const audio = new Audio(url);
+        audio.play().catch(err => console.error("Audio play failed:", err));
+    }
+
   return (
         <div class={"sentenceCard " + (isSelected() ? "sentenceSelectedCard" : "")}>
             <div class="word-group">
@@ -42,19 +47,32 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
                 </For>
             </div>
             <div class="buttonGroup">
-                <button class="action-btn play">play</button>
+                <button class="action-btn" onClick={() => {
+                    PlayAudioButton(props.phrase.audioUrl)
+                }}>
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" stroke="#333333" stroke-width="2"/>
+                    
+                    <path d="M32 24L19 31.5V16.5L32 24Z" fill="#3b82f6"/>
+                    </svg>
+                </button>
                 <Show when={!isSelected()}>
-                    <button class="action-btn add" onClick={() => {
+                    <button class="action-btn" onClick={() => {
                             setSelected(true)
                             props.setSelectedWords( (items:Phrases) => {
                                 return {"phrases": [...items.phrases, props.phrase]}
                             })
                             }}>
-                        +
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="22" stroke="#333333" stroke-width="2"/>
+                            
+                            <path d="M24 14V34" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M14 24H34" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
                     </button>
                 </Show>
                 <Show when={isSelected()}>
-                    <button class="action-btn del" onClick={() => {
+                    <button class="action-btn" onClick={() => {
                             setSelected(false)
                             props.setSelectedWords( (items:Phrases) => {
                                 return {"phrases": items.phrases.filter(
@@ -62,7 +80,12 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
                                 )}
                             })
                             }}>
-                        X
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="22" stroke="#333333" stroke-width="2"/>
+                            
+                            <path d="M17 17L31 31" stroke="#ff4444" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M31 17L17 31" stroke="#ff4444" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
                     </button>
                 </Show>
             </div>
