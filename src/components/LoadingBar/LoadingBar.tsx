@@ -1,19 +1,34 @@
 import { For } from "solid-js";
 import './LoadingBar.css'
+import { useStatusBarInfo } from "~/lib/Models/StatusContext";
+
 
 interface LoadingBarProps {
-  status: Number[]; // 0, 1, 2, 3, or 4
 }
 
 export default function LoadingBar(props: LoadingBarProps) {
-  // Logic to determine color based on status number
+
+  const { StatusContext} = useStatusBarInfo();
+
+
   const getSegmentColor = (currentStatus: Number) => {
-    if (currentStatus === 0) return "#ef4444"; // Red
+    if (currentStatus === 0) return "#ef4444"; 
     if (currentStatus === 2) return "#fff"
-    if (currentStatus === 3) return "#3b82f6"; // Blue
-    if (currentStatus === 4) return "#22c55e"; // Green
+    if (currentStatus === 3) return "#3b82f6"; 
+    if (currentStatus === 4) return "#22c55e";
     return "#333333"; // Default dark
   };
+
+  const status = (i:number) => {
+    switch (i) {
+      case 0: return StatusContext.CheckRequest
+      case 1: return StatusContext.SendImage
+      case 2: return StatusContext.SendAudio
+      case 3: return StatusContext.SendCard
+      default:
+        return StatusContext.CheckRequest
+    }
+  }
 
   return (
       <div class="fixed-bottom-container">
@@ -23,7 +38,7 @@ export default function LoadingBar(props: LoadingBarProps) {
                 <div 
                 class="bar-segment"
                 style={{
-                    "background-color": getSegmentColor(props.status[segmentNum]),
+                    "background-color": getSegmentColor(status(segmentNum)),
                     "border-color":"#333"
                 }}
                 />

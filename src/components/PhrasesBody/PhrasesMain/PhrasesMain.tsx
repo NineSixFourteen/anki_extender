@@ -25,19 +25,16 @@ export const PhrasesMain: Component<PhrasesMainImports> = (props) => {
   }
       
   return (
-    <main>
-      <section class="main-wrapper">
-        <CardTop />
-        <div style={"overflow-y:auto;max-height:550px"}>
-            <For each={props.displayList()}>  
-            {(item) => (
-                <CardPhrase phrase={item}
-                setSelectedWords={props.setSelectedWords} />
-            )}
-            </For>
-        </div>
-      </section>
-      <LoadingBar status={[StatusContext.CheckRequest,StatusContext.SendImage,StatusContext.SendAudio,StatusContext.SendCard]} />
-    </main>
+    <>
+      <CardTop />
+      <div style={"overflow-y:auto;max-height:550px"}>
+          <For each={props.displayList()}>  
+          {(item) => (
+              <CardPhrase phrase={item}
+              setSelectedWords={props.setSelectedWords} />
+          )}
+          </For>
+      </div>
+    </>
   );
 }

@@ -9,6 +9,7 @@ import { StatusProvider, useStatusBarInfo } from "~/lib/Models/StatusContext";
 import LoadingBar from "../LoadingBar/LoadingBar";
 import { StatusBar } from "../Common/StatusBar/StatusBar";
 import CardCoutner from "../StatusBar/CardCounter/CardCounter";
+import { PageBody } from "../Common/PageBody/PageBody";
 
 export default function BasicBody() {
   const [targetWord, setTargetWord] = createSignal<string>("");
@@ -16,7 +17,7 @@ export default function BasicBody() {
   const [audioSearch, setAudioSearch] = createSignal<string>("");
   const [count, setCount] = createSignal<number>(0);
   
-  const { StatusContext, setStatusContext} = useStatusBarInfo();
+  const {setStatusContext} = useStatusBarInfo();
 
   const {CardStore, setCardStore} = useCards();
 
@@ -24,7 +25,6 @@ export default function BasicBody() {
     setAudioSearch(word);
     setImageSearch(word);
     setTargetWord(word);
-    //Doing this one maunually because text area doesn't trigger onChange for some reason
     setCardStore('TargetWord', word);
     clearHints.clear();
     setCardStore('Hints', []);
@@ -51,19 +51,24 @@ export default function BasicBody() {
   }
 
   return (
-    <main class="pb-24">
-        <ActionBar2 loadWord={loadWord}/>
-        <div class="main-wrapper">
-            <div class="grid-container">
-                <ImageSection ref={(el:any) => (clearImage = el)} imageSearch={imageSearch} setImageSearch={setImageSearch}/>
-                <WordSection ref={(el:any) => (clearAudio = el)} audioSearch={audioSearch} setAudioSearch={setAudioSearch} targetWord={targetWord} setTargetWord={setTargetWord}/>
-                <HelpSection ref={(el:any) => (clearHints = el)} />
-            </div>
-        </div>
-        <LoadingBar status={[StatusContext.CheckRequest,StatusContext.SendImage,StatusContext.SendAudio,StatusContext.SendCard]} />
-        <StatusBar send={() => sendCard(setStatusContext, CardStore,() => setCount((count:number) => count + 1))} cardCounter={
-          <CardCoutner label={"Total cards sent: "} value={count()} />
-        } />
-    </main>
+    <PageBody 
+      actionBar={<ActionBar2 loadWord={loadWord}/>}
+      mainBody={[
+          <div class="grid-container">
+            <ImageSection ref={(el:any) => (clearImage = el)} imageSearch={imageSearch} setImageSearch={setImageSearch}/>
+            <WordSection ref={(el:any) => (clearAudio = el)} audioSearch={audioSearch} 
+                         setAudioSearch={setAudioSearch} targetWord={targetWord} setTargetWord={setTargetWord}/>
+            <HelpSection ref={(el:any) => (clearHints = el)} />
+          </div>
+      ]}
+      statusBar={
+        <StatusBar 
+          send={() => sendCard(setStatusContext, CardStore,() => setCount((count:number) => count + 1))}
+          cardCounter={
+            <CardCoutner label={"Total cards sent: "} value={count()} />
+          }
+        />
+      }
+    />
   );
 }

@@ -7,6 +7,7 @@ import { StatusBar } from "../Common/StatusBar/StatusBar";
 import CardCoutner from "../StatusBar/CardCounter/CardCounter";
 import { useStatusBarInfo } from "~/lib/Models/StatusContext";
 import { sendPhrases } from '~/lib/SendCardPipeline/SendPhrasePipeline';
+import { PageBody } from "../Common/PageBody/PageBody";
 
 export default function PhrasesBody() {
 
@@ -28,16 +29,19 @@ export default function PhrasesBody() {
   const removedId = (id:number) => setSelectedPhrases( (phrases:Phrases) => {return {"phrases": phrases.phrases.filter(item => item.id != id)}})
 
   return (
-    <main class="pb-24">
-      <ActionBar2 setPage={setPage} />
-      <PhrasesMain setSelectedWords={setSelectedPhrases} displayList={displayList} pageNum={pageNum}/>
-
+    <PageBody 
+      actionBar={ <ActionBar2 setPage={setPage} />}
+      mainBody={[
+        <PhrasesMain setSelectedWords={setSelectedPhrases} displayList={displayList} pageNum={pageNum}/>
+      ]}
+      statusBar={
       <StatusBar 
         send={()=> sendPhrases(setStatusContext,selectedPhrases(), removedId)} 
         cardCounter={
           <CardCoutner label={"Total cards selected: "} value={selectedPhrases().phrases.length} />
         } 
       />
-    </main>
+      }
+    />
   );
 }
