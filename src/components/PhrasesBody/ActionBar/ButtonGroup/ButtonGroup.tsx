@@ -1,3 +1,4 @@
+import { SearchIcon } from 'lucide-solid';
 import { Component, createSignal, For} from 'solid-js';
 import { useSentenceContext } from '~/lib/Models/SentencesContext';
 
@@ -37,9 +38,7 @@ export const ButtonGroup: Component<ButtonGroupImports> = (props) => {
             </For>
         </div>
         <button class="send-btn" onclick={() => props.sendRequest()}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <polyline points="20 6 9 17 4 12" />
-            </svg>
+            <SearchIcon />
         </button>
     </>
   );

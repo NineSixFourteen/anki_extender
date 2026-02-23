@@ -56,7 +56,9 @@
   transition: transform 0.1s, filter 0.2s;
 }
 
-.send-btn svg { width: 24px; height: 24px; }
+.send-btn svg {
+    width: 24px; 
+    height: 20px; }
 
 .list-container {
     margin: 30px 0;

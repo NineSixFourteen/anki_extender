@@ -1,7 +1,7 @@
 import { DropdownMenu } from "@kobalte/core/dropdown-menu";
 import { Accessor, Component, createSignal, For, Show } from "solid-js";
-import { PlusIcon, TickIcon, TrashIcon } from "./Icons";
 import { ChevronDown } from "lucide-solid";
+import { TickIcon } from "../Common/Icons/ActionBar";
 
 interface ButtonSetImports {
     currentWord: Function,

@@ -1,10 +1,10 @@
 
 import { DropdownMenu } from "@kobalte/core/dropdown-menu";
 import { Component, createSignal, Show} from "solid-js";
-import { PlusIcon } from "./Icons";
 import { ChevronDown } from "lucide-solid";
 import { ModalInput } from "./ModalInput";
 import ModalFile from "./ModalFile";
+import { PlusIcon } from "../Common/Icons/ActionBar";
 
 
 interface ButtonAddImports {

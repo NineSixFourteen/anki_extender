@@ -1,8 +1,8 @@
             
 import { DropdownMenu } from "@kobalte/core/dropdown-menu";
 import { Accessor, Component, createSignal, For, Show } from "solid-js";
-import { PlusIcon, TrashIcon } from "./Icons";
 import { ChevronDown } from "lucide-solid";
+import { TrashIcon } from "../Common/Icons/ActionBar";
 
 interface ButtonPopImports {
     setWordStore: Function,
