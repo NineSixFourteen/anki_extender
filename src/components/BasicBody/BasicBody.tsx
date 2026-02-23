@@ -2,11 +2,13 @@ import { ImageSection } from "~/components/ImageSection/ImageSection";
 import { WordSection } from "~/components/WordSection/WordSection";
 import { ActionBar2 } from '~/components/ActionBar/ActionBar'
 import { HelpSection } from "~/components/HelpSection/HelpSection";
-import { StatusBar } from "~/components/StatusBar/StatusBar";
+import { sendCard } from "~/lib/SendCardPipeline/SendCardPipeline";
 import { createSignal } from "solid-js";
 import { CardProvider, useCards } from "~/lib/Models/CardContext";
 import { StatusProvider, useStatusBarInfo } from "~/lib/Models/StatusContext";
 import LoadingBar from "../LoadingBar/LoadingBar";
+import { StatusBar } from "../Common/StatusBar/StatusBar";
+import CardCoutner from "../StatusBar/CardCounter/CardCounter";
 
 export default function BasicBody() {
   const [targetWord, setTargetWord] = createSignal<string>("");
@@ -16,7 +18,7 @@ export default function BasicBody() {
   
   const { StatusContext, setStatusContext} = useStatusBarInfo();
 
-  const {setCardStore} = useCards();
+  const {CardStore, setCardStore} = useCards();
 
   function loadWord(word:string){
     setAudioSearch(word);
@@ -59,7 +61,9 @@ export default function BasicBody() {
             </div>
         </div>
         <LoadingBar status={[StatusContext.CheckRequest,StatusContext.SendImage,StatusContext.SendAudio,StatusContext.SendCard]} />
-        <StatusBar count={count} setCount={setCount} />
+        <StatusBar send={() => sendCard(setStatusContext, CardStore,() => setCount((count:number) => count + 1))} cardCounter={
+          <CardCoutner label={"Total cards sent: "} value={count()} />
+        } />
     </main>
   );
 }
