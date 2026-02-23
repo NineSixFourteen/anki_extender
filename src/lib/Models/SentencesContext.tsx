@@ -10,7 +10,8 @@ export interface PhraseInfo{
     SentenceEnlgish:string[],
     SentenceSpanish:string, 
     audioUrl:string,
-    id:number
+    id:number,
+    selected:boolean
 }
 
 export interface TatoebaReply{

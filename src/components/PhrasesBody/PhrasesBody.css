@@ -113,6 +113,15 @@
     padding: 0 15px;
 }
 
+.action-btn.del {
+    background-color: red;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    padding: 0 15px;
+}
+
 .action-btn:hover {
     filter: brightness(1.2);
 }

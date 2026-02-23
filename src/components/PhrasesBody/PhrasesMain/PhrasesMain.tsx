@@ -8,7 +8,6 @@ import LoadingBar from "~/components/LoadingBar/LoadingBar";
 
 interface PhrasesMainImports {
   setSelectedWords:Setter<Phrases>,
-  incCount:Function
 }
 
 export const PhrasesMain: Component<PhrasesMainImports> = (props) => {
@@ -25,7 +24,7 @@ export const PhrasesMain: Component<PhrasesMainImports> = (props) => {
             <For each={SentenceContext.phrases}>  
             {(item) => (
                 <CardPhrase phrase={item}
-                setSelectedWords={props.setSelectedWords} incCount={props.incCount} />
+                setSelectedWords={props.setSelectedWords} />
             )}
             </For>
         </div>

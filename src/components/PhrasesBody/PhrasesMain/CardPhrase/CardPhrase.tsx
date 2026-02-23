@@ -1,16 +1,17 @@
-import { Component, For } from "solid-js";
+import { Component, createSignal, For, Show } from "solid-js";
 import './CardPhrase.css'
 import { PhraseInfo, Phrases } from "~/lib/Models/SentencesContext";
 interface CardPhraseImports {
     phrase:PhraseInfo,
     setSelectedWords:Function,
-    incCount:Function
 }
 
 export const CardPhrase: Component<CardPhraseImports> = (props) => {
 
+    const [isSelected, setSelected] = createSignal(false);
+
   return (
-        <div class="sentenceCard">
+        <div class={"sentenceCard " + (isSelected() ? "sentenceSelectedCard" : "")}>
             <div class="word-group">
                 <span class="sentence-text" style={"font-size:1.8rem;margin-left:20px"}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="60" height="30">
@@ -24,7 +25,7 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
             <div class="words-group">
                 <For each={props.phrase.SentenceEnlgish}>
                 {(item) => (
-                <div style={"display:flex;gap:15px;min-width:200px; padding-left:45px"}>
+                <div class="english-sec">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30">
                         <clipPath id="s">
                             <path d="M0,0 v30 h60 v-30 z"/>
@@ -42,14 +43,28 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
             </div>
             <div class="buttonGroup">
                 <button class="action-btn play">play</button>
-                <button class="action-btn add" onClick={() => {
-                        props.setSelectedWords( (items:Phrases) => {
-                            return {"phrases": [...items.phrases, props.phrase]}
-                        })
-                        props.incCount()
-                        }}>
-                    +
-                </button>
+                <Show when={!isSelected()}>
+                    <button class="action-btn add" onClick={() => {
+                            setSelected(true)
+                            props.setSelectedWords( (items:Phrases) => {
+                                return {"phrases": [...items.phrases, props.phrase]}
+                            })
+                            }}>
+                        +
+                    </button>
+                </Show>
+                <Show when={isSelected()}>
+                    <button class="action-btn del" onClick={() => {
+                            setSelected(false)
+                            props.setSelectedWords( (items:Phrases) => {
+                                return {"phrases": items.phrases.filter(
+                                    (item) => item.id != props.phrase.id
+                                )}
+                            })
+                            }}>
+                        X
+                    </button>
+                </Show>
             </div>
         </div>
   );

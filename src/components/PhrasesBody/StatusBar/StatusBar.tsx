@@ -1,4 +1,4 @@
-import { Component, createResource, createSignal, Show} from 'solid-js';
+import { Accessor, Component, createResource, createSignal, Show} from 'solid-js';
 import CardCoutner from '~/components/StatusBar/CardCounter/CardCounter';
 import { PhraseInfo, Phrases } from '~/lib/Models/SentencesContext';
 import { useStatusBarInfo } from '~/lib/Models/StatusContext';
@@ -6,9 +6,7 @@ import { sendPhrases } from '~/lib/SendCardPipeline/SendPhrasePipeline';
 
 
 interface StatusBarImports {
-    count:Function,
-    setCount:Function,
-    phrases:Function,
+    selectedPhrases:Accessor<Phrases>,
     setSelectedPhrases:Function
 
 }
@@ -18,24 +16,18 @@ export const StatusBar: Component<StatusBarImports> = (props) => {
   const { StatusContext, setStatusContext} = useStatusBarInfo();
 
     const removeId = (id:number) => {
-        console.log(props.phrases())
-        props.setSelectedPhrases({"phrases": (phrases:PhraseInfo[]) => {
-            phrases.filter(
-                (phrase) => phrase.id != id
-            )
-        }});
-        props.setCount((co:number) => co -1 );
-        console.log(props.phrases())
+        props.setSelectedPhrases( (phrases:Phrases) => {return {"phrases": phrases.phrases.filter(item => item.id != id)}})
     }
+    
 
     const send = () => {
-        sendPhrases(setStatusContext,props.phrases(), removeId)
+        sendPhrases(setStatusContext,props.selectedPhrases(), removeId)
     }
 
   return (
     <footer class="status-footer">
         <div class="status-container">
-            <CardCoutner label={"Total cards selected: "} value={props.count()} />
+            <CardCoutner label={"Total cards selected: "} value={props.selectedPhrases().phrases.length} />
             <Show when={false}>
                 <div class="loader-container">
                     <div class="spinner"></div>

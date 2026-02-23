@@ -23,7 +23,6 @@
     padding: 15px;
     transition: border-color 0.2s;
     height: 150px;
-
 }
 
 .sentenceCard:hover {
@@ -43,4 +42,16 @@
     display: flex;
     justify-content: center;
     width: 33%;
+}
+
+.english-sec {
+    display:flex;
+    gap:15px;
+    min-width:200px;
+    padding-left:45px
+}
+
+.sentenceSelectedCard {
+    background-color: #333;
+    border-color: #888;
 }
