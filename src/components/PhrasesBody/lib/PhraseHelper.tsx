@@ -22,7 +22,9 @@ const mapToReply = (data:any[]) => {
                         }
                     )
                 }
-            array.push(temp);
+            if(temp.audio){
+                array.push(temp);
+            }
         }
     )
     const dumb:TatoebaReply = {"sentencs": array}

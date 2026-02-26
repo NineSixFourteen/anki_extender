@@ -1,7 +1,8 @@
 import { Component, createSignal, For, Show } from "solid-js";
 import './CardPhrase.css'
-import { PhraseInfo, Phrases } from "~/components/PhrasesBody/lib/models/SentencesContext";
 import { AddPhraseIcon, PlayAudioIcon, RemovePhraseIcon, SpainIcon, UKIcon } from "~/components/Common/Icons/CardPhase";
+import { Phrases } from "../../lib/models/Phrases";
+import { PhraseInfo } from "../../lib/models/PhraseInfo";
 interface CardPhraseImports {
     phrase:PhraseInfo,
     setSelectedWords:Function,

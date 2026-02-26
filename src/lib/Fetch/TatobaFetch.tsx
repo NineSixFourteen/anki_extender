@@ -21,7 +21,7 @@ export const fetchSentences = query(async (languageCode:String, word:String,word
         }
 
         const data = await response.json();
-        return json(data); // Send clean JSON back to your frontend
+        return json(data);
     } catch (err) {
         return json({ error: "Server fetch failed" }, { status: 500 });
     }
