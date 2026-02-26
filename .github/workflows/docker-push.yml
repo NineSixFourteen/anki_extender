@@ -25,4 +25,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.REGISTRY_URL }}/my-app:latest
+          tags: ${{ secrets.REGISTRY_URL }}/anki-extender:latest
