@@ -10,6 +10,21 @@ export  const handleWordReference = (searchTerm: Function) => {
 export const handleSpanishDict = (searchTerm: Function) => {
     if (searchTerm()) window.open(`https://www.spanishdict.com/translate/${encodeURIComponent(searchTerm())}`, '_blank');
   };
+
+const doMagicFetch = async(word:string) => {
+    "use server"
+    const target = `https://www.wordreference.com/es/en/translation.asp?spen=${encodeURIComponent(word)}`;
+    
+    const response = await fetch(`${target}`);
+    
+    if (!response.ok) throw new Error("Response failed");
+    
+    const html = await response.text();
+
+    // The Regex hunt for that MP3 path
+    const match = html.match(/\/audio\/es\/\w+\/es\d+\.mp3/i);
+    return match;
+}
   
 export const handleMagicFetch = async (searchTerm: Function, setStatus: Function, setPastedUrl: Function, setCardStore: Function) => {
   const word = searchTerm().toLowerCase().trim();
@@ -18,18 +33,7 @@ export const handleMagicFetch = async (searchTerm: Function, setStatus: Function
   setStatus("loading");
   try {
     // Switching to a more robust proxy service
-    const proxy = "https://corsproxy.io/?";
-    const target = `https://www.wordreference.com/es/en/translation.asp?spen=${encodeURIComponent(word)}`;
-    
-    const response = await fetch(`${proxy}${target}`);
-    
-    if (!response.ok) throw new Error("Proxy response failed");
-    
-    const html = await response.text();
-
-    // The Regex hunt for that MP3 path
-    const match = html.match(/\/audio\/es\/\w+\/es\d+\.mp3/i);
-
+    const match = await doMagicFetch(word);
     if (match) {
       const fullUrl = `https://www.wordreference.com${match[0]}`;
       setPastedUrl(fullUrl);
