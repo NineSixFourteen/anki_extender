@@ -4,17 +4,20 @@ import { Phrases } from "~/components/PhrasesBody/lib/models/Phrases";
 
 
 
-export async function sendCardsToAnki(phrases:Phrases, removeId:Function,setStatusContext:Function){
+export async function sendCardsToAnki(phrases:Phrases,setStatusContext:Function, removeId:Function){
   const result = await sendCardsToAnkiServer(phrases);
-  handleResponse(result,'Card',setStatusContext);
   if(result.error){
-    return false
-  } else {
-    for(let id in result){
-      removeId(id);
-    }
+    await handleResponse(result,'Card',setStatusContext);
+    return false;
   }
+  for(let id of result){
+    removeId(id);
+  }
+  setStatusContext("ShowLoading",  false)
+  setStatusContext("Text","Phrases were sent succesfully");
+  setStatusContext('SendCard', 4);
 }
+
 
 async function sendCardsToAnkiServer(phrases:Phrases){
   "use server"
@@ -51,7 +54,7 @@ async function sendCardsToAnkiServer(phrases:Phrases){
 
 export async function sendCardToAnki(CardStore:any, setStatusContext:Function){
   const result = await sendCardToAnkiServer(CardStore);
-  handleResponse(result,'Card',setStatusContext);
+  await handleResponse(result,'Card',setStatusContext);
   return result.error ? false : true;
 }
 

@@ -10,7 +10,7 @@ export async function sendAudioToAnki(CardStore:any,setStatusContext:Function){
   } else {
     result = await sendStoredMediaData(CardStore,true);
   }
-  handleResponse(result,'Audio',setStatusContext);
+  await handleResponse(result,'Audio',setStatusContext);
   return result.error ? false : true;
 }
 
@@ -19,7 +19,7 @@ export async function sendAudiosToAnki(phrases:Phrases,setStatusContext:Function
   for(const data of phrases.phrases){
     const result = await sendStoredMediaUrl(data.audioUrl,data.id+"");
     if(result.error){
-        handleResponse(result,'Audio',setStatusContext);
+        await handleResponse(result,'Audio',setStatusContext);
         return false
     }
   }

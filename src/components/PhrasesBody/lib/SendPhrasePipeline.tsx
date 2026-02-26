@@ -12,32 +12,27 @@ export async function sendPhrases(setStatusContext:Function, phrases:Phrases,rem
     {
       condition: () => phrases.phrases.length > 0,
       then: async () => {
-        updateStatus('CheckRequest',4,'Request is good',setStatusContext)
-        await wait(1200)
-        updateStatus('SendImage',2,'No Image to send',setStatusContext);
-        await wait(800)
-        updateStatus('SendAudio',3,"Sending Audio to Anki",setStatusContext)
-        await wait(400)
+        await updateStatus('CheckRequest',4,'Request is good',setStatusContext,400)
+        await updateStatus('SendImage',2,'No Image to send',setStatusContext,400);
+        await updateStatus('SendAudio',3,"Sending Audio to Anki",setStatusContext,400)
       }, 
-      else: () => {
-        updateStatus('CheckRequest',0,'Please select some phrases first',setStatusContext)
+      else: async () => {
+        await updateStatus('CheckRequest',0,'Please select some phrases first',setStatusContext,0)
       },
       continueIfFail: false
     },
     {
       condition: async () => await sendAudiosToAnki(phrases,setStatusContext),
       then: async () => {
-        updateStatus('SendAudio',4,"Audio sent succesfully",setStatusContext)
-        await wait(1200)
-        updateStatus('SendCard',3,"Sending Cards to Anki",setStatusContext)
-        await wait(400)
+        await updateStatus('SendAudio',4,"Audio sent succesfully",setStatusContext,800)
+        await updateStatus('SendCard',3,"Sending Cards to Anki",setStatusContext,400)
       },
       continueIfFail: false
     },
     {
       condition: async () => await sendCardsToAnki(phrases,setStatusContext, removeId),
-      then: () => {
-        updateStatus('SendCard',4,"Cards sent succesfully",setStatusContext)
+      then: async () => {
+        await updateStatus('SendCard',4,"Cards sent succesfully",setStatusContext,0)
       },
       continueIfFail: false
     }
@@ -48,7 +43,7 @@ export async function sendPhrases(setStatusContext:Function, phrases:Phrases,rem
     if(await stage.condition() ){
       if(stage.then) await stage.then()
     } else {
-      if(stage.else)stage.else()
+      if(stage.else) await stage.else()
       if(!stage.continueIfFail) return;
     }
   }
