@@ -1,6 +1,10 @@
+"use server"
+const apiUrl = process.env.ANKI_URL || "http://127.0.0.1:8765";
+
+
 export async function fetchAnkiDecks() {
   try{
-    const response = await fetch("http://127.0.0.1:8765", {
+    const response = await fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
         action: "deckNames",

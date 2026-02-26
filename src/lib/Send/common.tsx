@@ -1,7 +1,10 @@
+"use server"
+
+const apiUrl = process.env.ANKI_URL || "http://127.0.0.1:8765";
 
 export async function sendStoredMediaUrl(url:string, fileName:string){
     console.log(`URL : ${url}, FILENAME: ${fileName}`)
-    const response = await fetch("http://127.0.0.1:8765", {
+    const response = await fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
         action: "storeMediaFile",
@@ -16,7 +19,7 @@ export async function sendStoredMediaUrl(url:string, fileName:string){
 }
 
 export async function sendStoredMediaData(CardStore:any, isAudio:boolean){
-      const response = await fetch("http://127.0.0.1:8765", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify({
           action: "storeMediaFile",

@@ -120,3 +120,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.relative-container {
+  position: relative;
+  display: inline-block; /* Keeps the container the same size as the button */
+}

@@ -1,9 +1,27 @@
+
 import { handleResponse } from "~/components/Common/LoadingBar/lib/StatusBarContextHelper";
 import { Phrases } from "~/components/PhrasesBody/lib/models/Phrases";
 
-export async function sendCardsToAnki(phrases:Phrases, setStatusContext:Function,removeId:Function){
+
+
+export async function sendCardsToAnki(phrases:Phrases, removeId:Function,setStatusContext:Function){
+  const result = await sendCardsToAnkiServer(phrases);
+  handleResponse(result,'Card',setStatusContext);
+  if(result.error){
+    return false
+  } else {
+    for(let id in result){
+      removeId(id);
+    }
+  }
+}
+
+async function sendCardsToAnkiServer(phrases:Phrases){
+  "use server"
+  const apiUrl = process.env.ANKI_URL || "http://127.0.0.1:8765";
+  let ids = [];
   for(const data of phrases.phrases){
-    const response = await fetch("http://127.0.0.1:8765", {
+    const response = await fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
         action: "addNote",
@@ -23,18 +41,24 @@ export async function sendCardsToAnki(phrases:Phrases, setStatusContext:Function
     });
       const result = await response.json();
       if(result.error){
-        handleResponse(result,'Card',setStatusContext);
-        return false
+        return result;
       } else {
-        removeId(data.id);
+        ids.push(data.id);
       }
   }
-  return  true;
-
+  return ids;
 }
 
-export async function sendCardToAnki(CardStore:any,setStatusContext:Function){
-  const response = await fetch("http://127.0.0.1:8765", {
+export async function sendCardToAnki(CardStore:any, setStatusContext:Function){
+  const result = await sendCardToAnkiServer(CardStore);
+  handleResponse(result,'Card',setStatusContext);
+  return result.error ? false : true;
+}
+
+export async function sendCardToAnkiServer(CardStore:any){
+  "use server"
+  const apiUrl = process.env.ANKI_URL || "http://127.0.0.1:8765";
+  const response = await fetch(apiUrl, {
     method: "POST",
     body: JSON.stringify({
       action: "addNote",
@@ -59,7 +83,5 @@ export async function sendCardToAnki(CardStore:any,setStatusContext:Function){
     })
   });
 
-  const result = await response.json();
-  handleResponse(result,'Card',setStatusContext);
-  return result.error ? false : true;
+  return await response.json();
 }
