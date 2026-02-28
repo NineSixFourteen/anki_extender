@@ -28,7 +28,7 @@ export const CardPhrase: Component<CardPhraseImports> = (props) => {
                 <For each={props.phrase.SentenceEnlgish}>
                 {(item) => (
                 <div class="english-sec">
-                    <UKIcon />
+                    <div class="ukflag" ><UKIcon  /></div>
                     <span class="sentence-text">{item}<br/></span>
                 </div>
                 )}

@@ -63,3 +63,40 @@
     max-height: 120px;
     overflow: auto;
 }
+
+@media only screen and (max-width: 600px){
+  .ukflag{
+    visibility: hidden;
+    height: 0;
+  }
+
+  
+.sentence-text {
+    font-size: 1.5rem !important;
+    margin: 0 10px !important;
+    display: flow;
+}
+
+  .english-sec{
+    display: unset;
+    gap: unset;
+    min-width: none;
+    padding-left: 0;
+  }
+
+  .sentenceCard {
+    align-items: center;
+    height: unset;
+    flex-direction: column;
+    gap: 20px;
+    }
+
+    .words-group{
+        width: unset;
+    }
+    .word-group{
+        width: unset;
+    }
+
+
+}

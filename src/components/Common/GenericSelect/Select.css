@@ -4,15 +4,6 @@
   gap: 12px
 }
 
-
-
-.toolbar-container {
-  display: flex;
-  width: 100%;
-  gap:20px
-
-}
-
 .toolbar-select {
   background-color: #000;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -27,4 +18,10 @@
 
 .toolbar-select:focus {
   border-color: #22c55e;
+}
+
+@media only screen and (max-width: 600px){
+  .toolbar-select{
+    height: 40px;
+  }
 }

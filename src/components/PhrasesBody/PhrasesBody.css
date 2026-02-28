@@ -87,3 +87,21 @@
     background-color: #111 !important;
     color: #888;
 }
+
+.phrasesMain{
+  overflow-y:auto;
+  max-height:550px;
+}
+
+
+
+@media only screen and (max-width: 600px){
+
+  .buttonGroup{
+    flex-wrap: wrap; 
+    width: unset;
+  }
+  .phrasesMain{
+    max-height: 750px;
+  }
+}

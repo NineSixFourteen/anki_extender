@@ -22,10 +22,10 @@ export const PhrasesMain: Component<PhrasesMainImports> = (props) => {
     return ( maxNoPhrases > min + 10 ? min + 10 : maxNoPhrases);
   }
       
-  return (
+  return ( 
     <>
       <CardTop />
-      <div style={"overflow-y:auto;max-height:550px"}>
+      <div class="phrasesMain">
           <For each={props.displayList()}>  
           {(item) => (
               <CardPhrase phrase={item}

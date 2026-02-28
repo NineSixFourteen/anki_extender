@@ -104,3 +104,16 @@
   gap: 0.5rem;
   width: 90vw;
 }
+
+
+@media only screen and (max-width: 600px){
+  .status-footer {
+      position: unset;
+  }
+  .big-text {
+    font-size: 1.3rem;        
+    letter-spacing: -0.02em;   
+    padding: 0 1rem;
+    margin:15px
+  }
+}

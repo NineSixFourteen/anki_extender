@@ -105,3 +105,18 @@
 }
 
 
+@media only screen and (max-width: 600px){
+  .main-wrapper {
+    min-height: 800px;
+  }
+
+  
+  .grid-container {
+    grid-template-columns: unset;
+  }
+
+  .paneSearch input {
+    width: 100%;
+  }
+
+}
