@@ -56,7 +56,9 @@
   }
 
   .rightSide {
-    margin-left: unset; /* Pushes to the right */
+    margin-left: unset; 
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .SelectWord label {

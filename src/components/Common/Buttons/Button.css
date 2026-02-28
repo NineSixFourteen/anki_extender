@@ -124,3 +124,10 @@
   position: relative;
   display: inline-block; /* Keeps the container the same size as the button */
 }
+
+@media only screen and (max-width: 600px){
+  .btn-single {
+    width: 35px;
+  }
+
+}
